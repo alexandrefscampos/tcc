@@ -4,9 +4,9 @@ final levels = [
   Level(
     number: 1,
     instructions:
-        'Center the frog vertically using Column and mainAxisAlignment.',
-    targetPositions: [Position(x: 50, y: 50)],
-    initialPositions: [Position(x: 0, y: 0)],
+        'Center the green frog vertically using Column and mainAxisAlignment.',
+    targetPositions: [Position(x: 50, y: 50, color: FrogColor.green)],
+    initialPositions: [Position(x: 0, y: 0, color: FrogColor.green)],
     allowedProperties: ['direction', 'mainAxisAlignment'],
     preBuiltCode: '''column(
   mainAxisAlignment: start,
@@ -22,21 +22,29 @@ final levels = [
   ),
   Level(
     number: 2,
-    instructions: 'Center the frog horizontally using Row.',
-    targetPositions: [Position(x: 50, y: 50)],
-    initialPositions: [Position(x: 0, y: 50)],
+    instructions: 'Arrange the colored frogs in order: green, yellow, red.',
+    targetPositions: [
+      Position(x: 20, y: 50, color: FrogColor.green),
+      Position(x: 50, y: 50, color: FrogColor.yellow),
+      Position(x: 80, y: 50, color: FrogColor.red),
+    ],
+    initialPositions: [
+      Position(x: 0, y: 0, color: FrogColor.green),
+      Position(x: 0, y: 0, color: FrogColor.yellow),
+      Position(x: 0, y: 0, color: FrogColor.red),
+    ],
     allowedProperties: ['direction', 'mainAxisAlignment'],
     preBuiltCode: '''row(
   mainAxisAlignment: start,
-  children: [frog()]
+  children: [frog(), frog(), frog()]
 )''',
     expectedSolution: '''row(
-  mainAxisAlignment: center,
-  children: [frog()]
+  mainAxisAlignment: spaceEvenly,
+  children: [frog(), frog(), frog()]
 )''',
-    hint: 'Row widgets arrange items horizontally. Try centering it!',
+    hint: 'Use spaceEvenly to distribute the frogs equally',
     explanation:
-        'Row widgets arrange their children horizontally. mainAxisAlignment in a Row controls horizontal positioning.',
+        'Row widgets arrange their children horizontally. The frogs need to match their colored lilypads.',
   ),
   Level(
     number: 3,

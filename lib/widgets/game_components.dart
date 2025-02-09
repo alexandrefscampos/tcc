@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tcc2/models/level.dart';
 
 class Frog extends StatelessWidget {
+  final FrogColor color;
   final double size;
-  final Color color;
 
   const Frog({
     super.key,
+    required this.color,
     this.size = 50,
-    this.color = Colors.green,
   });
 
   @override
@@ -16,7 +17,7 @@ class Frog extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: color,
+        color: _getColor(),
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
@@ -29,21 +30,32 @@ class Frog extends StatelessWidget {
       child: Center(
         child: CustomPaint(
           size: Size(size * 0.8, size * 0.8),
-          painter: FrogFacePainter(),
+          painter: FrogFacePainter(color: _getColor()),
         ),
       ),
     );
   }
+
+  Color _getColor() {
+    switch (color) {
+      case FrogColor.green:
+        return Colors.green;
+      case FrogColor.yellow:
+        return Colors.yellow;
+      case FrogColor.red:
+        return Colors.red;
+    }
+  }
 }
 
 class LilyPad extends StatelessWidget {
+  final FrogColor color;
   final double size;
-  final Color color;
 
   const LilyPad({
     super.key,
-    this.size = 60,
-    this.color = Colors.green,
+    required this.color,
+    this.size = 50,
   });
 
   @override
@@ -52,22 +64,39 @@ class LilyPad extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: color.withOpacity(0.3),
+        color: _getColor().withOpacity(0.3),
         shape: BoxShape.circle,
         border: Border.all(
-          color: color,
+          color: _getColor(),
           width: 2,
         ),
       ),
     );
   }
+
+  Color _getColor() {
+    switch (color) {
+      case FrogColor.green:
+        return Colors.green;
+      case FrogColor.yellow:
+        return Colors.yellow;
+      case FrogColor.red:
+        return Colors.red;
+    }
+  }
 }
 
 class FrogFacePainter extends CustomPainter {
+  final Color color;
+
+  const FrogFacePainter({
+    required this.color,
+  });
+
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white
+      ..color = color
       ..style = PaintingStyle.fill;
 
     // Draw eyes

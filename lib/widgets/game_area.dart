@@ -23,7 +23,9 @@ class GameArea extends StatelessWidget {
           ...level.targetPositions.map((position) => Positioned(
                 left: position.x,
                 top: position.y,
-                child: const LilyPad(),
+                child: LilyPad(
+                  color: position.color,
+                ),
               )),
 
           // User's layout container
@@ -32,7 +34,9 @@ class GameArea extends StatelessWidget {
               userInput,
               List.generate(
                 level.initialPositions.length,
-                (index) => const Frog(),
+                (index) => Frog(
+                  color: level.initialPositions[index].color,
+                ),
               ),
             ),
           ),
