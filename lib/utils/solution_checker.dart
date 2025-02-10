@@ -64,22 +64,16 @@ class SolutionChecker {
   }
 
   static List<Position> _calculateActualPositions(String code, Level level) {
-    // This would need to be implemented based on your specific layout system
-    // Here's a simplified example that assumes the code produces positions
     List<Position> positions = [];
-
-    // Parse the layout properties
     final properties = _parseProperties(code);
 
-    // Calculate positions based on the layout properties
-    // This is a simplified example - you'll need to implement the actual layout logic
     switch (properties['mainaxisalignment']) {
       case 'center':
-        // Calculate center positions
         positions = level.targetPositions
             .map((target) => Position(
                   x: target.x,
                   y: target.y,
+                  color: target.color,
                 ))
             .toList();
         break;

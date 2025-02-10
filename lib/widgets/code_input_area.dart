@@ -62,24 +62,6 @@ class _CodeInputAreaState extends State<CodeInputArea> {
           ),
           const SizedBox(height: 16),
 
-          // Available properties
-          Text(
-            'Available Properties:',
-            style: TextStyle(
-              color: Colors.grey[400],
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Wrap(
-            spacing: 8,
-            children: widget.currentLevel.allowedProperties
-                .map((prop) => Chip(
-                      label: Text(prop),
-                      backgroundColor: Colors.blue[700],
-                      labelStyle: const TextStyle(color: Colors.white),
-                    ))
-                .toList(),
-          ),
           const SizedBox(height: 16),
 
           // Code input
@@ -135,47 +117,6 @@ class _CodeInputAreaState extends State<CodeInputArea> {
             ),
             icon: Icon(widget.isCorrect ? Icons.check : Icons.play_arrow),
             label: Text(widget.isCorrect ? 'Completed!' : 'Run Code'),
-          ),
-
-          // Hint button
-          TextButton.icon(
-            onPressed: () => _showHint(context),
-            icon: const Icon(Icons.lightbulb_outline),
-            label: const Text('Need a hint?'),
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.yellow,
-            ),
-          ),
-
-          if (widget.currentLevel.explanation != null)
-            Container(
-              padding: const EdgeInsets.all(12),
-              margin: const EdgeInsets.only(bottom: 16),
-              decoration: BoxDecoration(
-                color: Colors.blue[900],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(
-                widget.currentLevel.explanation!,
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
-  void _showHint(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Hint'),
-        content: Text(widget.currentLevel.hint ??
-            'Try experimenting with different values!'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Got it!'),
           ),
         ],
       ),
