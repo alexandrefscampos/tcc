@@ -76,6 +76,7 @@ class _CodeInputAreaState extends State<CodeInputArea> {
                 ),
               ),
               child: TextField(
+                onChanged: (value) => widget.onCodeSubmitted(value),
                 controller: widget.controller,
                 style: const TextStyle(
                   color: Colors.white,
@@ -106,18 +107,6 @@ class _CodeInputAreaState extends State<CodeInputArea> {
                 style: const TextStyle(color: Colors.white),
               ),
             ),
-          const SizedBox(height: 16),
-
-          // Run button
-          ElevatedButton.icon(
-            onPressed: () => widget.onCodeSubmitted(widget.controller.text),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: widget.isCorrect ? Colors.green : Colors.blue,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-            ),
-            icon: Icon(widget.isCorrect ? Icons.check : Icons.play_arrow),
-            label: Text(widget.isCorrect ? 'Completed!' : 'Run Code'),
-          ),
         ],
       ),
     );
