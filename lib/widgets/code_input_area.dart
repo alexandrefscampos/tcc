@@ -1,3 +1,4 @@
+import 'package:dart_style/dart_style.dart';
 import 'package:flutter/material.dart';
 import 'package:tcc2/models/level.dart';
 
@@ -22,6 +23,28 @@ class CodeInputArea extends StatefulWidget {
 }
 
 class _CodeInputAreaState extends State<CodeInputArea> {
+  final _formatter = DartFormatter();
+
+  void _formatCode() {
+    try {
+      final formattedCode =
+          _formatter.formatSource(SourceCode(widget.controller.text));
+      widget.controller.value = TextEditingValue(
+        text: formattedCode.text,
+        selection: TextSelection.collapsed(offset: formattedCode.text.length),
+      );
+      widget.onCodeSubmitted(formattedCode.text);
+    } catch (e) {
+      // Show error snackbar if code cannot be formatted
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Could not format code: ${e.toString()}'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -38,13 +61,23 @@ class _CodeInputAreaState extends State<CodeInputArea> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Level info
-          Text(
-            'Level ${widget.currentLevel.number}',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Level ${widget.currentLevel.number}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.format_align_left, color: Colors.white),
+                onPressed: _formatCode,
+                tooltip: 'Format code',
+              ),
+            ],
           ),
           const SizedBox(height: 16),
 
