@@ -92,7 +92,6 @@ class _GameScreenState extends State<GameScreen> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              // Optionally reset the game or show high scores
             },
             child: const Text('Play Again'),
           ),
@@ -112,41 +111,29 @@ class _GameScreenState extends State<GameScreen> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                // Game Area
-                Expanded(
-                  flex: 2,
-                  child: GameArea(
-                    level: currentLevel,
-                    userInput: codeController.text,
-                  ),
-                ),
-                // Code Input Area
-                Expanded(
-                  child: CodeInputArea(
-                    controller: codeController,
-                    onCodeSubmitted: _checkSolution,
-                    currentLevel: currentLevel,
-                    feedbackMessage: feedbackMessage,
-                    isCorrect: isCorrect,
-                  ),
-                ),
-              ],
+      body: Expanded(
+        child: Row(
+          children: [
+            // Game Area
+            Expanded(
+              flex: 2,
+              child: GameArea(
+                level: currentLevel,
+                userInput: codeController.text,
+              ),
             ),
-          ),
-          // Progress indicator
-          LinearProgressIndicator(
-            value: currentLevel.number / levels.length,
-            backgroundColor: Colors.grey[200],
-            valueColor: AlwaysStoppedAnimation<Color>(
-              isCorrect ? Colors.green : Colors.blue,
+            // Code Input Area
+            Expanded(
+              child: CodeInputArea(
+                controller: codeController,
+                onCodeSubmitted: _checkSolution,
+                currentLevel: currentLevel,
+                feedbackMessage: feedbackMessage,
+                isCorrect: isCorrect,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

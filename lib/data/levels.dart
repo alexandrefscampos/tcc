@@ -5,7 +5,7 @@ final levels = [
     number: 1,
     instructions:
         'Center the green frog vertically using Column and mainAxisAlignment.',
-    targetPositions: [Position(x: 50, y: 50, color: FrogColor.green)],
+    targetPositions: [Position(x: 0, y: 90, color: FrogColor.green)],
     initialPositions: [Position(x: 0, y: 0, color: FrogColor.green)],
     allowedProperties: ['direction', 'mainAxisAlignment'],
     preBuiltCode: '''column(
