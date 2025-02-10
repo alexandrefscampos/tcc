@@ -17,17 +17,13 @@ class GameArea extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
     return Container(
+      height: screenSize.height,
       color: Colors.lightBlue[100], // Water background
       child: Stack(
         children: [
-          // Target positions (lily pads)
-          ...level.targetPositions.map((position) => Positioned(
-                left: position.x * screenSize.width / 100,
-                top: position.y * screenSize.height / 100,
-                child: LilyPad(
-                  color: position.color,
-                ),
-              )),
+          if (level.lilypadWidget != null) ...[
+            level.lilypadWidget!,
+          ],
 
           // User's layout container
           Positioned.fill(

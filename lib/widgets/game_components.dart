@@ -16,6 +16,7 @@ class Frog extends StatelessWidget {
     return Container(
       width: size,
       height: size,
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: _getColor(),
         shape: BoxShape.circle,
@@ -55,7 +56,7 @@ class LilyPad extends StatelessWidget {
   const LilyPad({
     super.key,
     required this.color,
-    this.size = 50,
+    this.size = 70,
   });
 
   @override

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 enum FrogColor {
   green,
   yellow,
@@ -9,20 +11,23 @@ class Level {
   final String instructions;
   final List<Position> targetPositions;
   final List<Position> initialPositions;
-  final List<String> allowedProperties;
   final String preBuiltCode;
   final String expectedSolution;
   final String? explanation;
+
+  final Widget? frogWidget;
+  final Widget? lilypadWidget;
 
   Level({
     required this.number,
     required this.instructions,
     required this.targetPositions,
     required this.initialPositions,
-    required this.allowedProperties,
     required this.preBuiltCode,
     this.expectedSolution = '',
     this.explanation,
+    this.frogWidget,
+    this.lilypadWidget,
   });
 }
 

@@ -5,20 +5,9 @@ class SolutionChecker {
 
   static CheckResult checkSolution(Level level, String userCode) {
     try {
-      // First, validate that only allowed properties are used
-      if (!_validateAllowedProperties(userCode, level.allowedProperties)) {
-        return CheckResult(
-          isCorrect: false,
-          message:
-              'You can only use these properties: ${level.allowedProperties.join(", ")}',
-        );
-      }
-
-      // Get the actual positions from the parsed layout
       List<Position> actualPositions =
           _calculateActualPositions(userCode, level);
 
-      // Compare positions with target positions
       bool allPositionsMatch = _comparePositions(
         actualPositions,
         level.targetPositions,
@@ -41,26 +30,6 @@ class SolutionChecker {
         message: 'There was an error in your code: ${e.toString()}',
       );
     }
-  }
-
-  static bool _validateAllowedProperties(
-      String code, List<String> allowedProperties) {
-    // Convert code to lowercase and remove spaces for easier checking
-    final normalizedCode = code.split(':')[0].toLowerCase().replaceAll(' ', '');
-
-    // Create a regex pattern that matches property names
-    final propertyPattern = RegExp(r'([a-zA-Z]+):');
-    final matches = propertyPattern.allMatches(normalizedCode);
-
-    for (final match in matches) {
-      final property = match.group(1);
-      if (property != null &&
-          !allowedProperties.contains(property.toLowerCase())) {
-        return false;
-      }
-    }
-
-    return true;
   }
 
   static List<Position> _calculateActualPositions(String code, Level level) {
