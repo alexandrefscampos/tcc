@@ -6,7 +6,8 @@ import 'package:tcc2/widgets/game_components.dart';
 class GameArea extends StatelessWidget {
   final Level level;
   final String userInput;
-
+  static final List<GlobalKey> lilypadKeys = [];
+  static final List<GlobalKey> frogKeys = [];
   const GameArea({
     super.key,
     required this.level,
@@ -16,13 +17,15 @@ class GameArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
+    lilypadKeys.clear(); // Clear previous keys
+    final modifiedLilypadWidget = _addKeysToWidgets(level.lilypadWidget);
     return Container(
       height: screenSize.height,
       color: Colors.lightBlue[100], // Water background
       child: Stack(
         children: [
-          if (level.lilypadWidget != null) ...[
-            level.lilypadWidget!,
+          if (modifiedLilypadWidget != null) ...[
+            modifiedLilypadWidget,
           ],
 
           // User's layout container
@@ -31,14 +34,48 @@ class GameArea extends StatelessWidget {
               userInput,
               List.generate(
                 level.initialPositions.length,
-                (index) => Frog(
-                  color: level.initialPositions[index].color,
-                ),
+                (index) {
+                  final key = GlobalKey();
+                  frogKeys.add(key);
+                  return Frog(
+                    key: key,
+                    color: level.initialPositions[index].color,
+                  );
+                },
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  Widget? _addKeysToWidgets(Widget? widget) {
+    if (widget == null) return null;
+
+    if (widget is LilyPad) {
+      final key = GlobalKey();
+      lilypadKeys.add(key);
+      return LilyPad(
+        key: key,
+        color: widget.color,
+      );
+    } else if (widget is Row) {
+      return Row(
+        mainAxisAlignment: widget.mainAxisAlignment,
+        crossAxisAlignment: widget.crossAxisAlignment,
+        children:
+            widget.children.map((child) => _addKeysToWidgets(child)!).toList(),
+      );
+    } else if (widget is Column) {
+      return Column(
+        mainAxisAlignment: widget.mainAxisAlignment,
+        crossAxisAlignment: widget.crossAxisAlignment,
+        children:
+            widget.children.map((child) => _addKeysToWidgets(child)!).toList(),
+      );
+    }
+
+    return widget;
   }
 }

@@ -33,7 +33,12 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _checkSolution(String code) {
-    final result = SolutionChecker.checkSolution(currentLevel, code);
+    final result = SolutionChecker.checkSolution(
+      currentLevel,
+      code,
+      GameArea.frogKeys,
+      GameArea.lilypadKeys,
+    );
 
     setState(() {
       feedbackMessage = result.message;

@@ -1,15 +1,30 @@
+import 'package:flutter/material.dart';
 import 'package:tcc2/models/level.dart';
 
 class SolutionChecker {
   static const double _positionTolerance = 5; // Tolerance in pixels
 
-  static CheckResult checkSolution(Level level, String userCode) {
+  static CheckResult checkSolution(
+    Level level,
+    String userCode,
+    List<GlobalKey> frogKeys,
+    List<GlobalKey> lilypadKeys,
+  ) {
     try {
-      List<Position> actualPositions =
-          _calculateActualPositions(userCode, level);
+      List<Position> frogPositions = _calculateActualPositions(frogKeys);
+      List<Position> lilypadPositions = _calculateActualPositions(lilypadKeys);
+
+      bool frogsOnLilypads =
+          _checkFrogsOnLilypads(frogPositions, lilypadPositions);
+      if (!frogsOnLilypads) {
+        return CheckResult(
+          isCorrect: false,
+          message: 'Make sure all frogs are on lilypads!',
+        );
+      }
 
       bool allPositionsMatch = _comparePositions(
-        actualPositions,
+        frogPositions,
         level.targetPositions,
       );
 
@@ -32,30 +47,41 @@ class SolutionChecker {
     }
   }
 
-  static List<Position> _calculateActualPositions(String code, Level level) {
+  static List<Position> _calculateActualPositions(List<GlobalKey> keys) {
     List<Position> positions = [];
-    final properties = _parseProperties(code);
 
-    switch (properties['mainaxisalignment']) {
-      case 'center':
-        positions = level.targetPositions
-            .map((target) => Position(
-                  x: target.x,
-                  y: target.y,
-                  color: target.color,
-                ))
-            .toList();
-        break;
-      case 'start':
-        // Calculate start positions
-        break;
-      case 'end':
-        // Calculate end positions
-        break;
-      // Add more cases as needed
+    for (final key in keys) {
+      if (key.currentContext != null) {
+        final RenderBox renderBox =
+            key.currentContext!.findRenderObject() as RenderBox;
+        final position = renderBox.localToGlobal(Offset.zero);
+
+        // Get the center point of the widget
+        final size = renderBox.size;
+        final centerX = position.dx + (size.width / 2);
+        final centerY = position.dy + (size.height / 2);
+
+        positions.add(Position(
+          x: centerX,
+          y: centerY,
+          color: FrogColor.green,
+        ));
+      }
     }
 
     return positions;
+  }
+
+  static bool _checkFrogsOnLilypads(
+    List<Position> frogPositions,
+    List<Position> lilypadPositions,
+  ) {
+    for (int i = 0; i < frogPositions.length; i++) {
+      if (!_isPositionMatch(frogPositions[i], lilypadPositions[i])) {
+        return false;
+      }
+    }
+    return true;
   }
 
   static Map<String, String> _parseProperties(String code) {
