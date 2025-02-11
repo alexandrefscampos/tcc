@@ -116,29 +116,27 @@ class _GameScreenState extends State<GameScreen> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: Expanded(
-        child: Row(
-          children: [
-            // Game Area
-            Expanded(
-              flex: 2,
-              child: GameArea(
-                level: currentLevel,
-                userInput: codeController.text,
-              ),
+      body: Row(
+        children: [
+          // Game Area
+          Expanded(
+            flex: 2,
+            child: GameArea(
+              level: currentLevel,
+              userInput: codeController.text,
             ),
-            // Code Input Area
-            Expanded(
-              child: CodeInputArea(
-                controller: codeController,
-                onCodeSubmitted: _checkSolution,
-                currentLevel: currentLevel,
-                feedbackMessage: feedbackMessage,
-                isCorrect: isCorrect,
-              ),
+          ),
+          // Code Input Area
+          Expanded(
+            child: CodeInputArea(
+              controller: codeController,
+              onCodeSubmitted: _checkSolution,
+              currentLevel: currentLevel,
+              feedbackMessage: feedbackMessage,
+              isCorrect: isCorrect,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
