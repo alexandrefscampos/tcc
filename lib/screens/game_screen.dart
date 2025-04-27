@@ -32,8 +32,12 @@ class _GameScreenState extends State<GameScreen> {
     codeController.text = currentLevel.preBuiltCode;
   }
 
-  void _checkSolution(String code) {
-    final result = SolutionChecker.checkSolution(
+  void _checkSolution(String code) async {
+    setState(() {
+      feedbackMessage = "Checking solution...";
+    });
+
+    final result = await SolutionChecker.checkSolution(
       currentLevel,
       code,
       GameArea.frogKeys,
@@ -75,7 +79,7 @@ class _GameScreenState extends State<GameScreen> {
     if (currentIndex < levels.length - 1) {
       setState(() {
         currentLevel = levels[currentIndex + 1];
-        codeController.clear();
+        codeController.text = currentLevel.preBuiltCode;
         feedbackMessage = null;
         isCorrect = false;
       });
