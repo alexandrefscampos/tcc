@@ -44,6 +44,12 @@ class _CodeInputAreaState extends State<CodeInputArea> {
     super.dispose();
   }
 
+  void _resetCode() {
+    widget.controller.text = widget.currentLevel.preBuiltCode;
+    _debounceTimer?.cancel();
+    widget.onCodeSubmitted(widget.currentLevel.preBuiltCode);
+  }
+
   void _formatCode() {
     try {
       final formattedCode =
@@ -52,11 +58,9 @@ class _CodeInputAreaState extends State<CodeInputArea> {
         text: formattedCode.text,
         selection: TextSelection.collapsed(offset: formattedCode.text.length),
       );
-      // Cancel any pending debounced calls and call immediately
       _debounceTimer?.cancel();
       widget.onCodeSubmitted(formattedCode.text);
     } catch (e) {
-      // Show error snackbar if code cannot be formatted
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Could not format code: ${e.toString()}'),
@@ -67,12 +71,6 @@ class _CodeInputAreaState extends State<CodeInputArea> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    // Don't set the text here - it's already set by the parent
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.grey[900],
@@ -80,7 +78,6 @@ class _CodeInputAreaState extends State<CodeInputArea> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Level info
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -92,16 +89,25 @@ class _CodeInputAreaState extends State<CodeInputArea> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              IconButton(
-                icon: const Icon(Icons.format_align_left, color: Colors.white),
-                onPressed: _formatCode,
-                tooltip: 'Format code',
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.refresh, color: Colors.white),
+                    onPressed: _resetCode,
+                    tooltip: 'Reset to original code',
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.format_align_left,
+                        color: Colors.white),
+                    onPressed: _formatCode,
+                    tooltip: 'Format code',
+                  ),
+                ],
               ),
             ],
           ),
           const SizedBox(height: 16),
 
-          // Instructions
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
