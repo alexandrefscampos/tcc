@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:tcc2/utils/syntax_validator.dart';
 
 class CodeParser {
   static Widget parseCode(String code, List<Widget> frogs) {
-    // // First validate syntax using the same validation as SolutionChecker
-    // final syntaxValidation = SolutionChecker.validateCodeSyntax(code);
-    // if (!syntaxValidation.isValid) {
-    //   return Center(
-    //     child: Padding(
-    //       padding: const EdgeInsets.all(16.0),
-    //       child: Text(
-    //         '❌ ${syntaxValidation.errorMessage}',
-    //         style: const TextStyle(
-    //           color: Colors.red,
-    //           fontSize: 16,
-    //         ),
-    //         textAlign: TextAlign.center,
-    //       ),
-    //     ),
-    //   );
-    // }
+    // First validate syntax using the same validation as SolutionChecker
+    final syntaxValidation = SyntaxValidator.validateCodeSyntax(code);
+    if (!syntaxValidation.isValid) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            '❌ ${syntaxValidation.errorMessage}',
+            style: const TextStyle(
+              color: Colors.red,
+              fontSize: 16,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
 
     // Remove extra whitespace and normalize the code
     code = code.trim().toLowerCase().replaceAll('\n', ' ');

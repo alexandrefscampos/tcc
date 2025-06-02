@@ -62,7 +62,7 @@ class PositionCalculator {
         // First check if colors match
         if (frogPosition.color == lilypadPosition.color) {
           // Then check if positions are close enough
-          if (_isPositionMatch(frogPosition, lilypadPosition)) {
+          if (isPositionMatch(frogPosition, lilypadPosition)) {
             foundMatch = true;
             break;
           }
@@ -77,7 +77,7 @@ class PositionCalculator {
     return true;
   }
 
-  static bool _isPositionMatch(Position actual, Position target) {
+  static bool isPositionMatch(Position actual, Position target) {
     bool match = (actual.x - target.x).abs() <= _positionTolerance &&
         (actual.y - target.y).abs() <= _positionTolerance;
 

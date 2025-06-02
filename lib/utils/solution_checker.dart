@@ -13,7 +13,6 @@ class SolutionChecker {
     List<GlobalKey> frogKeys,
     List<GlobalKey> lilypadKeys,
   ) async {
-    // First, validate the syntax of the user's code
     final syntaxValidation = SyntaxValidator.validateCodeSyntax(userCode);
     if (!syntaxValidation.isValid) {
       return CheckResult(
@@ -22,7 +21,6 @@ class SolutionChecker {
       );
     }
 
-    // Give the UI time to render and position elements
     await Future.delayed(const Duration(milliseconds: 500));
 
     try {
@@ -31,11 +29,27 @@ class SolutionChecker {
       List<Position> lilypadPositions =
           PositionCalculator.calculateActualPositions(lilypadKeys);
 
-      // Simply check if each frog is on its matching colored lilypad
-      bool allFrogsOnLilypads = PositionCalculator.checkFrogsOnMatchingLilypads(
+      final expectedFrogCount = level.initialPositions.length;
+      if (frogPositions.length != expectedFrogCount) {
+        return CheckResult(
+          isCorrect: false,
+          message:
+              'Incorrect number of frogs. Expected $expectedFrogCount frogs, but found ${frogPositions.length}.',
+        );
+      }
+
+      if (frogPositions.length != lilypadPositions.length) {
+        return CheckResult(
+          isCorrect: false,
+          message:
+              'Number of frogs (${frogPositions.length}) does not match number of lilypads (${lilypadPositions.length}).',
+        );
+      }
+
+      bool allFrogsCorrectlyPlaced = _checkFrogsOnMatchingLilypadsOneToOne(
           frogPositions, lilypadPositions);
 
-      if (allFrogsOnLilypads) {
+      if (allFrogsCorrectlyPlaced) {
         return CheckResult(
           isCorrect: true,
           message: 'Great job! You\'ve completed this level!',
@@ -53,5 +67,41 @@ class SolutionChecker {
         message: 'There was an error in your code: ${e.toString()}',
       );
     }
+  }
+
+  static bool _checkFrogsOnMatchingLilypadsOneToOne(
+    List<Position> frogPositions,
+    List<Position> lilypadPositions,
+  ) {
+    if (frogPositions.length != lilypadPositions.length) {
+      return false;
+    }
+
+    Set<int> matchedLilypadIndices = {};
+
+    for (final frogPosition in frogPositions) {
+      bool foundMatch = false;
+
+      for (int i = 0; i < lilypadPositions.length; i++) {
+        final lilypadPosition = lilypadPositions[i];
+
+        if (matchedLilypadIndices.contains(i)) {
+          continue;
+        }
+
+        if (frogPosition.color == lilypadPosition.color &&
+            PositionCalculator.isPositionMatch(frogPosition, lilypadPosition)) {
+          matchedLilypadIndices.add(i);
+          foundMatch = true;
+          break;
+        }
+      }
+
+      if (!foundMatch) {
+        return false;
+      }
+    }
+
+    return matchedLilypadIndices.length == frogPositions.length;
   }
 }
