@@ -14,7 +14,7 @@ class SolutionChecker {
     List<GlobalKey> lilypadKeys,
   ) async {
     // First, validate the syntax of the user's code
-    final syntaxValidation = _validateCodeSyntax(userCode);
+    final syntaxValidation = validateCodeSyntax(userCode);
     if (!syntaxValidation.isValid) {
       return CheckResult(
         isCorrect: false,
@@ -53,7 +53,7 @@ class SolutionChecker {
     }
   }
 
-  static SyntaxValidationResult _validateCodeSyntax(String code) {
+  static SyntaxValidationResult validateCodeSyntax(String code) {
     // Remove extra whitespace and normalize the code
     code = code.trim().toLowerCase().replaceAll('\n', ' ');
 
@@ -78,6 +78,12 @@ class SolutionChecker {
       );
     }
 
+    // Check for common syntax errors before general validation
+    final specificErrorCheck = _checkSpecificSyntaxErrors(code);
+    if (!specificErrorCheck.isValid) {
+      return specificErrorCheck;
+    }
+
     // Check for proper parentheses matching
     if (!_hasMatchingParentheses(code)) {
       return SyntaxValidationResult(
@@ -95,6 +101,87 @@ class SolutionChecker {
               'Syntax error: Children must be enclosed in square brackets [...].',
         );
       }
+    }
+
+    return SyntaxValidationResult(isValid: true, errorMessage: '');
+  }
+
+  static SyntaxValidationResult _checkSpecificSyntaxErrors(String code) {
+    // Check for missing comma after mainAxisAlignment
+    if (RegExp(r'mainaxisalignment:\s*\w+\s+[a-z]').hasMatch(code)) {
+      return SyntaxValidationResult(
+        isValid: false,
+        errorMessage:
+            'Missing comma after mainAxisAlignment. Example: "mainAxisAlignment: start,"',
+      );
+    }
+
+    // Check for missing comma after crossAxisAlignment
+    if (RegExp(r'crossaxisalignment:\s*\w+\s+[a-z]').hasMatch(code)) {
+      return SyntaxValidationResult(
+        isValid: false,
+        errorMessage:
+            'Missing comma after crossAxisAlignment. Example: "crossAxisAlignment: start,"',
+      );
+    }
+
+    // Check for missing comma between properties
+    if (RegExp(r':\s*\w+\s+\w+\s*:').hasMatch(code)) {
+      return SyntaxValidationResult(
+        isValid: false,
+        errorMessage:
+            'Missing comma between properties. Each property should end with a comma.',
+      );
+    }
+
+    // Check for missing comma after children array
+    if (RegExp(r'\]\s*\)\s*[^,\s]').hasMatch(code)) {
+      return SyntaxValidationResult(
+        isValid: false,
+        errorMessage:
+            'Missing comma after children array. Example: "children: [frog()],"',
+      );
+    }
+
+    // Check for missing colon after property names
+    if (RegExp(r'(mainaxisalignment|crossaxisalignment|children)\s+\w')
+        .hasMatch(code)) {
+      return SyntaxValidationResult(
+        isValid: false,
+        errorMessage:
+            'Missing colon after property name. Example: "mainAxisAlignment: start"',
+      );
+    }
+
+    // Check for common typos in alignment values
+    final alignmentMatches =
+        RegExp(r'(mainaxisalignment|crossaxisalignment):\s*(\w+)')
+            .allMatches(code);
+    for (final match in alignmentMatches) {
+      final value = match.group(2)!;
+      if (![
+        'start',
+        'end',
+        'center',
+        'spacebetween',
+        'spacearound',
+        'spaceevenly'
+      ].contains(value)) {
+        return SyntaxValidationResult(
+          isValid: false,
+          errorMessage:
+              'Invalid alignment value "$value". Use: start, end, center, spaceBetween, spaceAround, or spaceEvenly.',
+        );
+      }
+    }
+
+    // Check for missing parentheses in function calls
+    if (RegExp(r'frog\s*(?!\(\))').hasMatch(code)) {
+      return SyntaxValidationResult(
+        isValid: false,
+        errorMessage:
+            'Missing parentheses after frog. Use "frog()" instead of "frog".',
+      );
     }
 
     return SyntaxValidationResult(isValid: true, errorMessage: '');

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dart_style/dart_style.dart';
 import 'package:flutter/material.dart';
 import 'package:tcc2/models/level.dart';
+import 'package:tcc2/utils/solution_checker.dart';
 
 class CodeInputArea extends StatefulWidget {
   final TextEditingController controller;
@@ -51,6 +52,21 @@ class _CodeInputAreaState extends State<CodeInputArea> {
   }
 
   void _formatCode() {
+    // First check syntax using the existing validation logic
+    final syntaxValidation =
+        SolutionChecker.validateCodeSyntax(widget.controller.text);
+    if (!syntaxValidation.isValid) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(syntaxValidation.errorMessage),
+          backgroundColor: Colors.red,
+          duration: const Duration(seconds: 4),
+        ),
+      );
+      return;
+    }
+
+    // If syntax is valid, try to format
     try {
       final formattedCode =
           _formatter.formatSource(SourceCode(widget.controller.text));
@@ -62,9 +78,10 @@ class _CodeInputAreaState extends State<CodeInputArea> {
       widget.onCodeSubmitted(formattedCode.text);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Could not format code: ${e.toString()}'),
+        const SnackBar(
+          content: Text('Code formatting failed - please check your syntax'),
           backgroundColor: Colors.red,
+          duration: Duration(seconds: 3),
         ),
       );
     }
