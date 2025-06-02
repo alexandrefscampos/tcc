@@ -70,6 +70,15 @@ class CodeParser {
               properties['crossaxisalignment'] ?? 'start'),
           children: children,
         );
+      case 'flex':
+        return Flex(
+          direction: _parseAxis(properties['direction'] ?? 'horizontal'),
+          mainAxisAlignment: _parseMainAxisAlignment(
+              properties['mainaxisalignment'] ?? 'start'),
+          crossAxisAlignment: _parseCrossAxisAlignment(
+              properties['crossaxisalignment'] ?? 'start'),
+          children: children,
+        );
       case 'frog':
         return const Frog(color: FrogColor.green);
       default:
@@ -192,6 +201,28 @@ class CodeParser {
         return CrossAxisAlignment.stretch;
       default:
         return CrossAxisAlignment.start;
+    }
+  }
+
+  static Axis _parseAxis(String value) {
+    switch (value) {
+      case 'horizontal':
+        return Axis.horizontal;
+      case 'vertical':
+        return Axis.vertical;
+      default:
+        throw 'Unknown axis: $value';
+    }
+  }
+
+  static FlexFit _parseFlexFit(String value) {
+    switch (value) {
+      case 'loose':
+        return FlexFit.loose;
+      case 'tight':
+        return FlexFit.tight;
+      default:
+        throw 'Unknown flex fit: $value';
     }
   }
 }
