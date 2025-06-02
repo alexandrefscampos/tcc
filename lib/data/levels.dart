@@ -7,7 +7,6 @@ final levels = [
     number: 1,
     instructions:
         'Center the green frog vertically using Column and mainAxisAlignment.',
-    targetPositions: [Position(x: 0, y: 90, color: FrogColor.green)],
     frogWidget: const Row(children: [Frog(color: FrogColor.green)]),
     lilypadWidget: const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -36,11 +35,6 @@ final levels = [
   Level(
     number: 2,
     instructions: 'Arrange the colored frogs in order: green, yellow, red.',
-    targetPositions: [
-      Position(x: 20, y: 50, color: FrogColor.green),
-      Position(x: 50, y: 50, color: FrogColor.yellow),
-      Position(x: 80, y: 50, color: FrogColor.red),
-    ],
     initialPositions: [
       Position(x: 0, y: 0, color: FrogColor.green),
       Position(x: 0, y: 0, color: FrogColor.yellow),

@@ -9,7 +9,6 @@ enum FrogColor {
 class Level {
   final int number;
   final String instructions;
-  final List<Position> targetPositions;
   final List<Position> initialPositions;
   final String preBuiltCode;
   final String expectedSolution;
@@ -21,7 +20,6 @@ class Level {
   Level({
     required this.number,
     required this.instructions,
-    required this.targetPositions,
     required this.initialPositions,
     required this.preBuiltCode,
     this.expectedSolution = '',

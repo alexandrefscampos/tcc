@@ -13,7 +13,16 @@ class SolutionChecker {
     List<GlobalKey> frogKeys,
     List<GlobalKey> lilypadKeys,
   ) async {
-    // First, give the UI time to render and position elements
+    // First, validate the syntax of the user's code
+    final syntaxValidation = _validateCodeSyntax(userCode);
+    if (!syntaxValidation.isValid) {
+      return CheckResult(
+        isCorrect: false,
+        message: syntaxValidation.errorMessage,
+      );
+    }
+
+    // Give the UI time to render and position elements
     await Future.delayed(const Duration(milliseconds: 500));
 
     try {
@@ -42,6 +51,79 @@ class SolutionChecker {
         message: 'There was an error in your code: ${e.toString()}',
       );
     }
+  }
+
+  static SyntaxValidationResult _validateCodeSyntax(String code) {
+    // Remove extra whitespace and normalize the code
+    code = code.trim().toLowerCase().replaceAll('\n', ' ');
+
+    // Check if the code contains valid Flutter widgets
+    final widgetMatch = RegExp(r'(\w+)\s*\(').firstMatch(code);
+    if (widgetMatch == null) {
+      return SyntaxValidationResult(
+        isValid: false,
+        errorMessage:
+            'Invalid syntax: Please use a valid Flutter widget format like "row(...)" or "column(...)"',
+      );
+    }
+
+    final widgetName = widgetMatch.group(1)!;
+
+    // Check if it's a valid widget name
+    if (!['row', 'column'].contains(widgetName)) {
+      return SyntaxValidationResult(
+        isValid: false,
+        errorMessage:
+            'Invalid widget: "$widgetName" is not a valid Flutter widget. Use "row" or "column".',
+      );
+    }
+
+    // Check for proper parentheses matching
+    if (!_hasMatchingParentheses(code)) {
+      return SyntaxValidationResult(
+        isValid: false,
+        errorMessage: 'Syntax error: Mismatched parentheses in your code.',
+      );
+    }
+
+    // Check for children array if it exists
+    if (code.contains('children:')) {
+      if (!code.contains('[') || !code.contains(']')) {
+        return SyntaxValidationResult(
+          isValid: false,
+          errorMessage:
+              'Syntax error: Children must be enclosed in square brackets [...].',
+        );
+      }
+    }
+
+    return SyntaxValidationResult(isValid: true, errorMessage: '');
+  }
+
+  static bool _hasMatchingParentheses(String code) {
+    int parenthesesCount = 0;
+    int bracketsCount = 0;
+
+    for (int i = 0; i < code.length; i++) {
+      switch (code[i]) {
+        case '(':
+          parenthesesCount++;
+          break;
+        case ')':
+          parenthesesCount--;
+          if (parenthesesCount < 0) return false;
+          break;
+        case '[':
+          bracketsCount++;
+          break;
+        case ']':
+          bracketsCount--;
+          if (bracketsCount < 0) return false;
+          break;
+      }
+    }
+
+    return parenthesesCount == 0 && bracketsCount == 0;
   }
 
   static List<Position> _calculateActualPositions(List<GlobalKey> keys) {
@@ -119,5 +201,15 @@ class CheckResult {
   CheckResult({
     required this.isCorrect,
     required this.message,
+  });
+}
+
+class SyntaxValidationResult {
+  final bool isValid;
+  final String errorMessage;
+
+  SyntaxValidationResult({
+    required this.isValid,
+    required this.errorMessage,
   });
 }
