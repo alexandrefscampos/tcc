@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tcc2/enums/frog_color.dart';
 import 'package:tcc2/models/level.dart';
+import 'package:tcc2/models/position.dart';
 import 'package:tcc2/widgets/game_components.dart';
 
 final levels = [

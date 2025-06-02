@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tcc2/models/level.dart';
+import 'package:tcc2/enums/frog_color.dart';
 
 class Frog extends StatelessWidget {
   final FrogColor color;

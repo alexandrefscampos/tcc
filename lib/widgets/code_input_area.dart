@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:dart_style/dart_style.dart';
 import 'package:flutter/material.dart';
 import 'package:tcc2/models/level.dart';
-import 'package:tcc2/utils/solution_checker.dart';
+import 'package:tcc2/utils/syntax_validator.dart';
 
 class CodeInputArea extends StatefulWidget {
   final TextEditingController controller;
@@ -54,7 +54,7 @@ class _CodeInputAreaState extends State<CodeInputArea> {
   void _formatCode() {
     // First check syntax using the existing validation logic
     final syntaxValidation =
-        SolutionChecker.validateCodeSyntax(widget.controller.text);
+        SyntaxValidator.validateCodeSyntax(widget.controller.text);
     if (!syntaxValidation.isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

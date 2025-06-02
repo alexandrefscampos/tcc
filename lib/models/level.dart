@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-
-enum FrogColor {
-  green,
-  yellow,
-  red,
-}
+import 'package:tcc2/models/position.dart';
 
 class Level {
   final int number;
@@ -27,25 +22,4 @@ class Level {
     this.frogWidget,
     this.lilypadWidget,
   });
-}
-
-class Position {
-  final double x;
-  final double y;
-
-  final FrogColor color;
-
-  Position({
-    required this.x,
-    required this.y,
-    required this.color,
-  });
-
-  // Helper method to get actual position based on container size
-  Position getPixelPosition(double containerWidth, double containerHeight) {
-    return Position(
-        x: (x * containerWidth) / 100,
-        y: (y * containerHeight) / 100,
-        color: color);
-  }
 }
