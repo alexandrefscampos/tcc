@@ -22,6 +22,8 @@ class _GameScreenState extends State<GameScreen> {
   late TextEditingController codeController;
   String? feedbackMessage;
   bool isCorrect = false;
+  bool _isLoadingLevel = false;
+  bool _isShowingDialog = false;
   final List<Level> levels = Levels.getLevels();
 
   @override
@@ -32,7 +34,17 @@ class _GameScreenState extends State<GameScreen> {
     codeController.text = currentLevel.preBuiltCode;
   }
 
+  @override
+  void dispose() {
+    codeController.dispose();
+    super.dispose();
+  }
+
   void _checkSolution(String code) async {
+    if (_isLoadingLevel || _isShowingDialog) {
+      return;
+    }
+
     setState(() {
       feedbackMessage = "Checking solution...";
     });
@@ -49,12 +61,18 @@ class _GameScreenState extends State<GameScreen> {
       isCorrect = result.isCorrect;
     });
 
-    if (result.isCorrect) {
+    if (result.isCorrect && !_isShowingDialog) {
       _showSuccessDialog();
     }
   }
 
   void _showSuccessDialog() {
+    if (_isShowingDialog) {
+      return;
+    }
+
+    _isShowingDialog = true;
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -65,6 +83,7 @@ class _GameScreenState extends State<GameScreen> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
+              _isShowingDialog = false;
               _loadNextLevel();
             },
             child: const Text('Next Level'),
@@ -76,16 +95,36 @@ class _GameScreenState extends State<GameScreen> {
 
   void _loadNextLevel() {
     final currentIndex = levels.indexOf(currentLevel);
+
     if (currentIndex < levels.length - 1) {
-      setState(() {
-        currentLevel = levels[currentIndex + 1];
-        codeController.text = currentLevel.preBuiltCode;
-        feedbackMessage = null;
-        isCorrect = false;
-      });
+      _loadLevel(levels[currentIndex + 1]);
     } else {
       _showGameCompleteDialog();
     }
+  }
+
+  void _restartGame() {
+    _loadLevel(levels.first);
+  }
+
+  void _loadLevel(Level newLevel) {
+    setState(() {
+      _isLoadingLevel = true;
+      currentLevel = newLevel;
+      feedbackMessage = null;
+      isCorrect = false;
+    });
+
+    final tempController = TextEditingController(text: newLevel.preBuiltCode);
+
+    codeController.dispose();
+    codeController = tempController;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        _isLoadingLevel = false;
+      });
+    });
   }
 
   void _showGameCompleteDialog() {
@@ -101,6 +140,7 @@ class _GameScreenState extends State<GameScreen> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
+              _restartGame();
             },
             child: const Text('Play Again'),
           ),

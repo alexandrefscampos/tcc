@@ -6,10 +6,10 @@ final levels = [
   Level(
     number: 1,
     instructions:
-        'Center the green frog vertically using Column and mainAxisAlignment.',
+        'Center the frogs vertically using Column and mainAxisAlignment.',
     frogWidget: const Row(children: [Frog(color: FrogColor.green)]),
-    lilypadWidget: const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    lilypadWidget: const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         LilyPad(color: FrogColor.green),
         LilyPad(color: FrogColor.yellow),
@@ -34,12 +34,21 @@ final levels = [
   ),
   Level(
     number: 2,
-    instructions: 'Arrange the colored frogs in order: green, yellow, red.',
+    instructions:
+        'Arrange the frogs horizontally with equal spacing using Row and mainAxisAlignment.',
     initialPositions: [
       Position(x: 0, y: 0, color: FrogColor.green),
       Position(x: 0, y: 0, color: FrogColor.yellow),
       Position(x: 0, y: 0, color: FrogColor.red),
     ],
+    lilypadWidget: const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        LilyPad(color: FrogColor.green),
+        LilyPad(color: FrogColor.yellow),
+        LilyPad(color: FrogColor.red),
+      ],
+    ),
     preBuiltCode: '''row(
   mainAxisAlignment: start,
   children: [frog(), frog(), frog()]
@@ -49,7 +58,50 @@ final levels = [
   children: [frog(), frog(), frog()]
 )''',
     explanation:
-        'Row widgets arrange their children horizontally. The frogs need to match their colored lilypads.',
+        'Row widgets arrange their children horizontally. Use spaceEvenly to distribute them with equal spacing.',
+  ),
+  Level(
+    number: 3,
+    instructions:
+        'Center the frogs both horizontally and vertically using nested Column and Row.',
+    initialPositions: [
+      Position(x: 0, y: 0, color: FrogColor.green),
+      Position(x: 0, y: 0, color: FrogColor.yellow),
+      Position(x: 0, y: 0, color: FrogColor.red),
+    ],
+    lilypadWidget: const Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            LilyPad(color: FrogColor.green),
+            LilyPad(color: FrogColor.yellow),
+            LilyPad(color: FrogColor.red),
+          ],
+        ),
+      ],
+    ),
+    preBuiltCode: '''column(
+  mainAxisAlignment: start,
+  children: [
+    row(
+      mainAxisAlignment: start,
+      children: [frog(), frog(), frog()]
+    )
+  ]
+)''',
+    expectedSolution: '''column(
+  mainAxisAlignment: center,
+  children: [
+    row(
+      mainAxisAlignment: center,
+      children: [frog(), frog(), frog()]
+    )
+  ]
+)''',
+    explanation:
+        'You can nest Row inside Column to control both horizontal and vertical alignment.',
   ),
 ];
 

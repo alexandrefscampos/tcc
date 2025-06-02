@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dart_style/dart_style.dart';
 import 'package:flutter/material.dart';
 import 'package:tcc2/models/level.dart';
@@ -24,6 +26,23 @@ class CodeInputArea extends StatefulWidget {
 
 class _CodeInputAreaState extends State<CodeInputArea> {
   final _formatter = DartFormatter();
+  Timer? _debounceTimer;
+
+  void _onTextChanged(String value) {
+    // Cancel the previous timer
+    _debounceTimer?.cancel();
+
+    // Set a new timer
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () {
+      widget.onCodeSubmitted(value);
+    });
+  }
+
+  @override
+  void dispose() {
+    _debounceTimer?.cancel();
+    super.dispose();
+  }
 
   void _formatCode() {
     try {
@@ -33,6 +52,8 @@ class _CodeInputAreaState extends State<CodeInputArea> {
         text: formattedCode.text,
         selection: TextSelection.collapsed(offset: formattedCode.text.length),
       );
+      // Cancel any pending debounced calls and call immediately
+      _debounceTimer?.cancel();
       widget.onCodeSubmitted(formattedCode.text);
     } catch (e) {
       // Show error snackbar if code cannot be formatted
@@ -48,8 +69,7 @@ class _CodeInputAreaState extends State<CodeInputArea> {
   @override
   void initState() {
     super.initState();
-    // Initialize text controller with pre-built code
-    widget.controller.text = widget.currentLevel.preBuiltCode;
+    // Don't set the text here - it's already set by the parent
   }
 
   @override
@@ -109,7 +129,7 @@ class _CodeInputAreaState extends State<CodeInputArea> {
                 ),
               ),
               child: TextField(
-                onChanged: (value) => widget.onCodeSubmitted(value),
+                onChanged: _onTextChanged,
                 controller: widget.controller,
                 style: const TextStyle(
                   color: Colors.white,
