@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tcc2/enums/frog_color.dart';
 import 'package:tcc2/utils/syntax_validator.dart';
+import 'package:tcc2/widgets/game_components.dart';
 
 class CodeParser {
   static Widget parseCode(String code, List<Widget> frogs) {
@@ -68,6 +70,8 @@ class CodeParser {
               properties['crossaxisalignment'] ?? 'start'),
           children: children,
         );
+      case 'frog':
+        return const Frog(color: FrogColor.green);
       default:
         throw 'Unknown widget: $widgetName';
     }
