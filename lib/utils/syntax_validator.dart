@@ -11,18 +11,18 @@ class SyntaxValidator {
       return SyntaxValidationResult(
         isValid: false,
         errorMessage:
-            'Invalid syntax: Please use a valid Flutter widget format like "row(...)" or "column(...)"',
+            'Invalid syntax: Please use a valid Flutter widget format like "row(...)" or "column(...)" or "flex(...)"',
       );
     }
 
     final widgetName = widgetMatch.group(1)!;
 
     // Check if it's a valid widget name
-    if (!['row', 'column'].contains(widgetName)) {
+    if (!['row', 'column', 'flex'].contains(widgetName)) {
       return SyntaxValidationResult(
         isValid: false,
         errorMessage:
-            'Invalid widget: "$widgetName" is not a valid Flutter widget. Use "row" or "column".',
+            'Invalid widget: "$widgetName" is not a valid Flutter widget. Use "row" or "column" or "flex".',
       );
     }
 
@@ -73,6 +73,15 @@ class SyntaxValidator {
       );
     }
 
+    // Check for missing comma after direction (for flex widget)
+    if (RegExp(r'direction:\s*\w+\s+[a-z]').hasMatch(code)) {
+      return SyntaxValidationResult(
+        isValid: false,
+        errorMessage:
+            'Missing comma after direction. Example: "direction: horizontal,"',
+      );
+    }
+
     // Check for missing comma between properties
     if (RegExp(r':\s*\w+\s+\w+\s*:').hasMatch(code)) {
       return SyntaxValidationResult(
@@ -92,12 +101,13 @@ class SyntaxValidator {
     }
 
     // Check for missing colon after property names
-    if (RegExp(r'(mainaxisalignment|crossaxisalignment|children)\s+\w')
+    if (RegExp(
+            r'(mainaxisalignment|crossaxisalignment|children|direction)\s+\w')
         .hasMatch(code)) {
       return SyntaxValidationResult(
         isValid: false,
         errorMessage:
-            'Missing colon after property name. Example: "mainAxisAlignment: start"',
+            'Missing colon after property name. Example: "direction: horizontal"',
       );
     }
 
@@ -119,6 +129,19 @@ class SyntaxValidator {
           isValid: false,
           errorMessage:
               'Invalid alignment value "$value". Use: start, end, center, spaceBetween, spaceAround, or spaceEvenly.',
+        );
+      }
+    }
+
+    // Check for valid direction values in flex widget
+    final directionMatches = RegExp(r'direction:\s*(\w+)').allMatches(code);
+    for (final match in directionMatches) {
+      final value = match.group(1)!;
+      if (!['horizontal', 'vertical'].contains(value)) {
+        return SyntaxValidationResult(
+          isValid: false,
+          errorMessage:
+              'Invalid direction value "$value". Use: horizontal or vertical.',
         );
       }
     }

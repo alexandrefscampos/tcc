@@ -219,6 +219,30 @@ final levels = [
     explanation:
         'Row widgets arrange their children horizontally. Use spaceEvenly to distribute them with equal spacing.',
   ),
+  Level(
+    number: 9,
+    instructions:
+        'Arrange the frogs horizontally with equal spacing using Row and mainAxisAlignment.',
+    initialPositions: [
+      Position(x: 0, y: 0, color: FrogColor.green),
+      Position(x: 0, y: 0, color: FrogColor.yellow),
+      Position(x: 0, y: 0, color: FrogColor.red),
+    ],
+    lilypadWidget: const Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        LilyPad(color: FrogColor.green),
+        LilyPad(color: FrogColor.yellow),
+        LilyPad(color: FrogColor.red),
+      ],
+    ),
+    preBuiltCode: '''flex(
+  direction: horizontal,
+  children: [frog(), frog(), frog()]
+)''',
+    explanation:
+        'Row widgets arrange their children horizontally. Use spaceEvenly to distribute them with equal spacing.',
+  ),
 ];
 
 class Levels {
