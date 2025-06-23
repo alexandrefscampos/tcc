@@ -62,35 +62,35 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get level2Instructions =>
-      'Ajude os sapos a alcançarem suas vitórias-régias no centro.\n\nA propriedade mainAxisAlignment aceita estes valores:\n• start - alinha à esquerda\n• end - alinha à direita\n• center - centraliza os itens';
+      'Ajude os sapos a alcançarem suas vitórias-régias no centro.\n\nA propriedade mainAxisAlignment aceita estes valores:\n• start - alinha à esquerda\n• end - alinha à direita\n• center - centraliza os itens\n\nObserve onde as vitórias-régias estão posicionadas e escolha o alinhamento correto!';
 
   @override
   String get level3Instructions =>
-      'Ajude todos os três sapos a encontrarem suas vitórias-régias usando apenas mainAxisAlignment. Desta vez, as vitórias-régias têm muito espaço ao redor delas.\n\nSe você esquecer os valores possíveis para mainAxisAlignment, lembre-se: start, end, center, spaceBetween, spaceAround, spaceEvenly.';
+      'Ajude todos os três sapos a encontrarem suas vitórias-régias usando apenas mainAxisAlignment. Desta vez, as vitórias-régias têm mais espaço ao redor delas.\n\nLembre-se dos valores possíveis para mainAxisAlignment: start, end, center, spaceBetween, spaceAround, spaceEvenly.\n\nPense sobre como você quer distribuir o espaço ao redor dos seus itens.';
 
   @override
   String get level4Instructions =>
-      'Agora as vitórias-régias nas bordas se afastaram para a margem, aumentando o espaço entre elas. Use mainAxisAlignment. Desta vez, as vitórias-régias têm espaçamento igual entre elas.\n\nTente mainAxisAlignment: spaceBetween para colocar espaçamento igual entre itens, mas não nas bordas.';
+      'Agora as vitórias-régias estão posicionadas de forma diferente com mais espaço entre elas. Use mainAxisAlignment para combinar as posições dos sapos.\n\nDica: Alguns valores de mainAxisAlignment criam espaçamento igual entre itens. Qual coloca espaço entre itens mas não nas bordas?';
 
   @override
   String get level5Instructions =>
-      'Mova os sapos para a parte inferior do lago.\n\nColumn organiza filhos verticalmente. Use mainAxisAlignment: end para posicionar itens na parte inferior de uma Column.';
+      'Mova os sapos para a parte inferior do lago.\n\nVocê precisará mudar de Row para Column. Column organiza filhos verticalmente ao invés de horizontalmente.\n\nPense sobre qual valor de mainAxisAlignment move itens para o final do seu container.';
 
   @override
   String get level6Instructions =>
-      'Centralize o sapo tanto horizontal quanto verticalmente.\n\nAninhe um Row dentro de uma Column para controlar ambos os eixos:\n• mainAxisAlignment da Column controla posicionamento vertical\n• mainAxisAlignment da Row controla posicionamento horizontal';
+      'Centralize o sapo tanto horizontal quanto verticalmente.\n\nPara controlar posicionamento horizontal e vertical, você precisará combinar widgets. Considere como Row controla posicionamento horizontal e Column controla posicionamento vertical.\n\nVocê consegue aninhar um dentro do outro?';
 
   @override
   String get level7Instructions =>
-      'Posicione os sapos na parte inferior com espaçamento igual entre eles.\n\nCombine Column e Row:\n• Use Column com mainAxisAlignment: end para posicionamento inferior\n• Use Row com mainAxisAlignment: spaceBetween para espaçamento horizontal';
+      'Posicione os sapos na parte inferior com espaçamento igual entre eles.\n\nEste desafio combina conceitos dos níveis anteriores. Você precisará de controle vertical e horizontal.\n\nPense sobre quais widgets e valores de alinhamento você aprendeu até agora.';
 
   @override
   String get level8Instructions =>
-      'Empilhe os sapos verticalmente.\n\nColumn organiza filhos de cima para baixo. Este é o equivalente vertical de Row.';
+      'Empilhe os sapos verticalmente para combinar com as vitórias-régias.\n\nColumn organiza filhos de cima para baixo, que é o equivalente vertical de Row.\n\nObserve cuidadosamente onde cada vitória-régia está posicionada.';
 
   @override
   String get level9Instructions =>
-      'Use Flex para posicionar os sapos na parte inferior.\n\nFlex é o widget base tanto para Row quanto para Column:\n• direction: horizontal cria um Row\n• direction: vertical cria um Column\n• Use mainAxisAlignment: end para posicionar na parte inferior';
+      'Use Flex para posicionar os sapos corretamente.\n\nFlex é o widget base tanto para Row quanto para Column. Ele tem uma propriedade direction que determina se funciona horizontalmente ou verticalmente.\n\nExperimente com valores de direction e mainAxisAlignment para resolver este quebra-cabeça.';
 
   @override
   String get syntaxErrorInvalidWidget =>

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tcc2/enums/frog_color.dart';
+import 'package:tcc2/theme/app_colors.dart';
 
 class Frog extends StatelessWidget {
   final FrogColor color;
@@ -22,7 +23,7 @@ class Frog extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: AppColors.black.withOpacity(0.2),
             blurRadius: 5,
             offset: const Offset(0, 2),
           ),
@@ -40,11 +41,11 @@ class Frog extends StatelessWidget {
   Color _getColor() {
     switch (color) {
       case FrogColor.green:
-        return Colors.green;
+        return AppColors.frogGreen;
       case FrogColor.yellow:
-        return Colors.yellow;
+        return AppColors.frogYellow;
       case FrogColor.red:
-        return Colors.red;
+        return AppColors.frogRed;
     }
   }
 }
@@ -78,11 +79,11 @@ class LilyPad extends StatelessWidget {
   Color _getColor() {
     switch (color) {
       case FrogColor.green:
-        return Colors.green;
+        return AppColors.frogGreen;
       case FrogColor.yellow:
-        return Colors.yellow;
+        return AppColors.frogYellow;
       case FrogColor.red:
-        return Colors.red;
+        return AppColors.frogRed;
     }
   }
 }
@@ -113,7 +114,7 @@ class FrogFacePainter extends CustomPainter {
     );
 
     // Draw pupils
-    paint.color = Colors.black;
+    paint.color = AppColors.black;
     canvas.drawCircle(
       Offset(size.width * 0.3, size.height * 0.3),
       size.width * 0.05,

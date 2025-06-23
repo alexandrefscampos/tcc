@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:dart_style/dart_style.dart';
 import 'package:flutter/material.dart';
 import 'package:tcc2/models/level.dart';
+import 'package:tcc2/theme/app_colors.dart';
+import 'package:tcc2/theme/app_text_styles.dart';
 import 'package:tcc2/utils/syntax_validator.dart';
 
 import '../l10n/app_localizations.dart';
@@ -68,7 +70,7 @@ class _CodeInputAreaState extends State<CodeInputArea> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(syntaxValidation.errorMessage),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.snackBarError,
           duration: const Duration(seconds: 4),
         ),
       );
@@ -89,7 +91,7 @@ class _CodeInputAreaState extends State<CodeInputArea> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(l10n.codeFormattingFailed),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColors.snackBarError,
           duration: const Duration(seconds: 3),
         ),
       );
@@ -101,7 +103,7 @@ class _CodeInputAreaState extends State<CodeInputArea> {
     final l10n = AppLocalizations.of(context)!;
 
     return Container(
-      color: Colors.grey[900],
+      color: AppColors.codeBackground,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -111,22 +113,18 @@ class _CodeInputAreaState extends State<CodeInputArea> {
             children: [
               Text(
                 l10n.levelNumber(widget.currentLevel.number),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: AppTextStyles.heading,
               ),
               Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.refresh, color: Colors.white),
+                    icon: const Icon(Icons.refresh, color: AppColors.codeText),
                     onPressed: _resetCode,
                     tooltip: l10n.resetTooltip,
                   ),
                   IconButton(
                     icon: const Icon(Icons.format_align_left,
-                        color: Colors.white),
+                        color: AppColors.codeText),
                     onPressed: _formatCode,
                     tooltip: l10n.formatTooltip,
                   ),
@@ -139,12 +137,12 @@ class _CodeInputAreaState extends State<CodeInputArea> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: Colors.grey[800],
+              color: AppColors.codeContainer,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
               widget.currentLevel.instructions,
-              style: const TextStyle(color: Colors.white),
+              style: AppTextStyles.body,
             ),
           ),
           const SizedBox(height: 16),
@@ -155,23 +153,22 @@ class _CodeInputAreaState extends State<CodeInputArea> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.grey[850],
+                color: AppColors.codeInputBackground,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: widget.isCorrect ? Colors.green : Colors.grey[700]!,
+                  color: widget.isCorrect
+                      ? AppColors.successBorder
+                      : AppColors.codeInputBorder,
                   width: 2,
                 ),
               ),
               child: TextField(
                 onChanged: _onTextChanged,
                 controller: widget.controller,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'monospace',
-                ),
+                style: AppTextStyles.code,
                 decoration: InputDecoration(
                   hintText: l10n.codeHint,
-                  hintStyle: TextStyle(color: Colors.grey[600]),
+                  hintStyle: AppTextStyles.hint,
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.all(16),
                 ),
@@ -186,12 +183,14 @@ class _CodeInputAreaState extends State<CodeInputArea> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: widget.isCorrect ? Colors.green[900] : Colors.red[900],
+                color: widget.isCorrect
+                    ? AppColors.successBackground
+                    : AppColors.errorBackground,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
                 widget.feedbackMessage!,
-                style: const TextStyle(color: Colors.white),
+                style: AppTextStyles.body,
               ),
             ),
         ],

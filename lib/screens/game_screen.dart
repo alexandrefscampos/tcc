@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tcc2/data/levels.dart';
 import 'package:tcc2/models/level.dart';
+import 'package:tcc2/theme/app_colors.dart';
 import 'package:tcc2/utils/command_manager.dart';
 import 'package:tcc2/utils/solution_checker.dart';
 import 'package:tcc2/widgets/code_input_area.dart';
@@ -203,7 +204,7 @@ class _GameScreenState extends State<GameScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(l10n.levelNumber(currentLevel.number)),
-          backgroundColor: Colors.blue,
+          backgroundColor: AppColors.gameScreenAppBar,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context),

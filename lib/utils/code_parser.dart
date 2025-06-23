@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tcc2/enums/frog_color.dart';
+import 'package:tcc2/theme/app_text_styles.dart';
 import 'package:tcc2/utils/syntax_validator.dart';
 import 'package:tcc2/widgets/game_components.dart';
 
@@ -19,10 +20,7 @@ class CodeParser {
           padding: const EdgeInsets.all(16.0),
           child: Text(
             '❌ ${syntaxValidation.errorMessage}',
-            style: const TextStyle(
-              color: Colors.red,
-              fontSize: 16,
-            ),
+            style: AppTextStyles.error,
             textAlign: TextAlign.center,
           ),
         ),
@@ -40,7 +38,7 @@ class CodeParser {
       return Center(
         child: Text(
           'Invalid code: ${e.toString()}',
-          style: const TextStyle(color: Colors.red),
+          style: AppTextStyles.error,
         ),
       );
     }

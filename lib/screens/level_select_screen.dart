@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tcc2/data/levels.dart';
 import 'package:tcc2/models/level.dart';
 import 'package:tcc2/screens/game_screen.dart';
+import 'package:tcc2/theme/app_colors.dart';
+import 'package:tcc2/theme/app_text_styles.dart';
 
 import '../l10n/app_localizations.dart';
 
@@ -28,8 +30,8 @@ class LevelSelectScreen extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.lightBlue[200]!,
-              Colors.lightBlue[800]!,
+              AppColors.levelSelectGradientStart,
+              AppColors.levelSelectGradientEnd,
             ],
           ),
         ),
@@ -87,7 +89,7 @@ class LevelButton extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
 
     return Material(
-      color: Colors.transparent,
+      color: AppColors.transparent,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(12),
@@ -96,12 +98,12 @@ class LevelButton extends StatelessWidget {
             color: _getBackgroundColor(),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: Colors.white,
+              color: AppColors.levelButtonBorder,
               width: 2,
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2),
+                color: AppColors.black.withOpacity(0.2),
                 blurRadius: 4,
                 offset: const Offset(0, 2),
               ),
@@ -116,16 +118,12 @@ class LevelButton extends StatelessWidget {
                     if (!isUnlocked)
                       const Icon(
                         Icons.lock,
-                        color: Colors.white,
+                        color: AppColors.levelButtonIcon,
                         size: 32,
                       ),
                     Text(
                       l10n.levelNumber(level.number),
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: AppTextStyles.buttonText,
                     ),
                   ],
                 ),
@@ -136,7 +134,7 @@ class LevelButton extends StatelessWidget {
                   right: 8,
                   child: Icon(
                     Icons.check_circle,
-                    color: Colors.white,
+                    color: AppColors.levelButtonIcon,
                     size: 24,
                   ),
                 ),
@@ -148,8 +146,8 @@ class LevelButton extends StatelessWidget {
   }
 
   Color _getBackgroundColor() {
-    if (!isUnlocked) return Colors.grey;
-    if (isCompleted) return Colors.green;
-    return Colors.blue;
+    if (!isUnlocked) return AppColors.levelButtonUnlocked;
+    if (isCompleted) return AppColors.levelButtonCompleted;
+    return AppColors.levelButtonAvailable;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tcc2/models/level.dart';
+import 'package:tcc2/theme/app_colors.dart';
 import 'package:tcc2/utils/code_parser.dart';
 import 'package:tcc2/widgets/game_components.dart';
 
@@ -27,7 +28,10 @@ class GameArea extends StatelessWidget {
     final modifiedLilypadWidget = _addKeysToWidgets(level.lilypadWidget);
     return Container(
       height: screenSize.height,
-      color: Colors.lightBlue[100], // Water background
+      decoration: BoxDecoration(
+        color: AppColors.waterBackground, // Water background
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Stack(
         children: [
           if (modifiedLilypadWidget != null) ...[

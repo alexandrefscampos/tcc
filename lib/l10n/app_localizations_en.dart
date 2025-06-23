@@ -62,35 +62,35 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get level2Instructions =>
-      'Help the frogs reach their lilypads in the center.\n\nThe mainAxisAlignment property accepts these values:\n• start - aligns to the left\n• end - aligns to the right\n• center - centers the items';
+      'Help the frogs reach their lilypads in the center.\n\nThe mainAxisAlignment property accepts these values:\n• start - aligns to the left\n• end - aligns to the right\n• center - centers the items\n\nLook at where the lilypads are positioned and choose the right alignment!';
 
   @override
   String get level3Instructions =>
-      'Help all three frogs find their lilypads just by using mainAxisAlignment. This time, the lilypads have lots of space all around them.\n\nIf you find yourself forgetting the possible values for mainAxisAlignment, remember: start, end, center, spaceBetween, spaceAround, spaceEvenly.';
+      'Help all three frogs find their lilypads just by using mainAxisAlignment. This time, the lilypads have more space around them.\n\nRemember the possible values for mainAxisAlignment: start, end, center, spaceBetween, spaceAround, spaceEvenly.\n\nThink about how you want to distribute the space around your items.';
 
   @override
   String get level4Instructions =>
-      'Now the lilypads on the edges have drifted to the shore, increasing the space between them. Use mainAxisAlignment. This time, the lilypads have equal spacing between them.\n\nTry mainAxisAlignment: spaceBetween to place equal spacing between items, but not at the edges.';
+      'Now the lilypads are positioned differently with more space between them. Use mainAxisAlignment to match the frog positions.\n\nHint: Some mainAxisAlignment values create equal spacing between items. Which one puts space between items but not at the edges?';
 
   @override
   String get level5Instructions =>
-      'Move the frogs to the bottom of the pond.\n\nColumn arranges children vertically. Use mainAxisAlignment: end to position items at the bottom of a Column.';
+      'Move the frogs to the bottom of the pond.\n\nYou\'ll need to switch from Row to Column. Column arranges children vertically instead of horizontally.\n\nThink about which mainAxisAlignment value moves items to the end of their container.';
 
   @override
   String get level6Instructions =>
-      'Center the frog both horizontally and vertically.\n\nNest a Row inside a Column to control both axes:\n• Column\'s mainAxisAlignment controls vertical positioning\n• Row\'s mainAxisAlignment controls horizontal positioning';
+      'Center the frog both horizontally and vertically.\n\nTo control both horizontal and vertical positioning, you\'ll need to combine widgets. Consider how Row controls horizontal positioning and Column controls vertical positioning.\n\nCan you nest one inside the other?';
 
   @override
   String get level7Instructions =>
-      'Position the frogs at the bottom with equal spacing between them.\n\nCombine Column and Row:\n• Use Column with mainAxisAlignment: end for bottom positioning\n• Use Row with mainAxisAlignment: spaceBetween for horizontal spacing';
+      'Position the frogs at the bottom with equal spacing between them.\n\nThis challenge combines concepts from previous levels. You\'ll need both vertical and horizontal control.\n\nThink about which widgets and alignment values you\'ve learned so far.';
 
   @override
   String get level8Instructions =>
-      'Stack the frogs vertically.\n\nColumn arranges children from top to bottom. This is the vertical equivalent of Row.';
+      'Stack the frogs vertically to match the lilypads.\n\nColumn arranges children from top to bottom, which is the vertical equivalent of Row.\n\nLook carefully at where each lilypad is positioned.';
 
   @override
   String get level9Instructions =>
-      'Use Flex to position the frogs at the bottom.\n\nFlex is the base widget for both Row and Column:\n• direction: horizontal creates a Row\n• direction: vertical creates a Column\n• Use mainAxisAlignment: end to position at the bottom';
+      'Use Flex to position the frogs correctly.\n\nFlex is the base widget for both Row and Column. It has a direction property that determines whether it works horizontally or vertically.\n\nExperiment with direction values and mainAxisAlignment to solve this puzzle.';
 
   @override
   String get syntaxErrorInvalidWidget =>
