@@ -5,6 +5,8 @@ import 'package:tcc2/utils/solution_checker.dart';
 import 'package:tcc2/widgets/code_input_area.dart';
 import 'package:tcc2/widgets/game_area.dart';
 
+import '../l10n/app_localizations.dart';
+
 class GameScreen extends StatefulWidget {
   final Level initialLevel;
 
@@ -24,7 +26,7 @@ class _GameScreenState extends State<GameScreen> {
   bool isCorrect = false;
   bool _isLoadingLevel = false;
   bool _isShowingDialog = false;
-  final List<Level> levels = Levels.getLevels();
+  late List<Level> levels;
 
   @override
   void initState() {
@@ -32,6 +34,20 @@ class _GameScreenState extends State<GameScreen> {
     currentLevel = widget.initialLevel;
     codeController = TextEditingController();
     codeController.text = currentLevel.preBuiltCode;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final l10n = AppLocalizations.of(context)!;
+    levels = Levels.getLocalizedLevels(l10n);
+
+    // Update current level with localized content
+    final currentLevelIndex =
+        levels.indexWhere((level) => level.number == currentLevel.number);
+    if (currentLevelIndex != -1) {
+      currentLevel = levels[currentLevelIndex];
+    }
   }
 
   @override
@@ -45,8 +61,10 @@ class _GameScreenState extends State<GameScreen> {
       return;
     }
 
+    final l10n = AppLocalizations.of(context)!;
+
     setState(() {
-      feedbackMessage = "Checking solution...";
+      feedbackMessage = l10n.checkingSolution;
     });
 
     final result = await SolutionChecker.checkSolution(
@@ -54,6 +72,7 @@ class _GameScreenState extends State<GameScreen> {
       code,
       GameArea.frogKeys,
       GameArea.lilypadKeys,
+      l10n,
     );
 
     setState(() {
@@ -72,13 +91,14 @@ class _GameScreenState extends State<GameScreen> {
     }
 
     _isShowingDialog = true;
+    final l10n = AppLocalizations.of(context)!;
 
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: const Text('Congratulations! 🎉'),
-        content: Text('You\'ve completed level ${currentLevel.number}!'),
+        title: Text(l10n.congratulations),
+        content: Text(l10n.levelCompleted(currentLevel.number)),
         actions: [
           TextButton(
             onPressed: () {
@@ -86,7 +106,7 @@ class _GameScreenState extends State<GameScreen> {
               _isShowingDialog = false;
               _loadNextLevel();
             },
-            child: const Text('Next Level'),
+            child: Text(l10n.nextLevel),
           ),
         ],
       ),
@@ -128,21 +148,21 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _showGameCompleteDialog() {
+    final l10n = AppLocalizations.of(context)!;
+
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: const Text('🏆 Game Complete! 🏆'),
-        content: const Text(
-          'Congratulations! You\'ve mastered Flutter layouts!',
-        ),
+        title: Text(l10n.gameComplete),
+        content: Text(l10n.gameCompleteMessage),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.pop(context);
               _restartGame();
             },
-            child: const Text('Play Again'),
+            child: Text(l10n.playAgain),
           ),
         ],
       ),
@@ -151,9 +171,11 @@ class _GameScreenState extends State<GameScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Level ${currentLevel.number}'),
+        title: Text(l10n.levelNumber(currentLevel.number)),
         backgroundColor: Colors.blue,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:tcc2/models/level.dart';
 import 'package:tcc2/utils/syntax_validator.dart';
 
+import '../l10n/app_localizations.dart';
+
 class CodeInputArea extends StatefulWidget {
   final TextEditingController controller;
   final Function(String) onCodeSubmitted;
@@ -52,9 +54,11 @@ class _CodeInputAreaState extends State<CodeInputArea> {
   }
 
   void _formatCode() {
+    final l10n = AppLocalizations.of(context)!;
+
     // First check syntax using the existing validation logic
     final syntaxValidation =
-        SyntaxValidator.validateCodeSyntax(widget.controller.text);
+        SyntaxValidator.validateCodeSyntax(widget.controller.text, l10n);
     if (!syntaxValidation.isValid) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -78,10 +82,10 @@ class _CodeInputAreaState extends State<CodeInputArea> {
       widget.onCodeSubmitted(formattedCode.text);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Code formatting failed - please check your syntax'),
+        SnackBar(
+          content: Text(l10n.codeFormattingFailed),
           backgroundColor: Colors.red,
-          duration: Duration(seconds: 3),
+          duration: const Duration(seconds: 3),
         ),
       );
     }
@@ -89,6 +93,8 @@ class _CodeInputAreaState extends State<CodeInputArea> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Container(
       color: Colors.grey[900],
       padding: const EdgeInsets.all(16),
@@ -99,7 +105,7 @@ class _CodeInputAreaState extends State<CodeInputArea> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Level ${widget.currentLevel.number}',
+                l10n.levelNumber(widget.currentLevel.number),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -111,13 +117,13 @@ class _CodeInputAreaState extends State<CodeInputArea> {
                   IconButton(
                     icon: const Icon(Icons.refresh, color: Colors.white),
                     onPressed: _resetCode,
-                    tooltip: 'Reset to original code',
+                    tooltip: l10n.resetTooltip,
                   ),
                   IconButton(
                     icon: const Icon(Icons.format_align_left,
                         color: Colors.white),
                     onPressed: _formatCode,
-                    tooltip: 'Format code',
+                    tooltip: l10n.formatTooltip,
                   ),
                 ],
               ),
@@ -159,7 +165,7 @@ class _CodeInputAreaState extends State<CodeInputArea> {
                   fontFamily: 'monospace',
                 ),
                 decoration: InputDecoration(
-                  hintText: 'Enter your Flutter layout code here...',
+                  hintText: l10n.codeHint,
                   hintStyle: TextStyle(color: Colors.grey[600]),
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.all(16),

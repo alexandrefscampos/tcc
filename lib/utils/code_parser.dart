@@ -3,10 +3,16 @@ import 'package:tcc2/enums/frog_color.dart';
 import 'package:tcc2/utils/syntax_validator.dart';
 import 'package:tcc2/widgets/game_components.dart';
 
+import '../l10n/app_localizations.dart';
+
 class CodeParser {
-  static Widget parseCode(String code, List<Widget> frogs) {
+  static Widget parseCode(
+    String code,
+    List<Widget> frogs,
+    AppLocalizations l10n,
+  ) {
     // First validate syntax using the same validation as SolutionChecker
-    final syntaxValidation = SyntaxValidator.validateCodeSyntax(code);
+    final syntaxValidation = SyntaxValidator.validateCodeSyntax(code, l10n);
     if (!syntaxValidation.isValid) {
       return Center(
         child: Padding(
@@ -41,6 +47,11 @@ class CodeParser {
   }
 
   static Widget _parseWidget(String code, List<Widget> frogs) {
+    // Handle empty code
+    if (code.trim().isEmpty) {
+      return const SizedBox.shrink(); // Return an empty widget
+    }
+
     // Extract widget name and content
     final match = RegExp(r'(\w+)\s*\((.*)\)').firstMatch(code);
     if (match == null) throw 'Invalid widget format';
@@ -51,6 +62,12 @@ class CodeParser {
     // Parse properties and children
     final properties = _parseProperties(content);
     final children = _parseChildren(properties.remove('children') ?? '', frogs);
+
+    // Handle child property safely
+    final childProperty = properties.remove('child') ?? '';
+    final child = childProperty.trim().isEmpty
+        ? const SizedBox.shrink()
+        : _parseWidget(childProperty, frogs);
 
     // Create the appropriate widget
     switch (widgetName) {
@@ -79,6 +96,29 @@ class CodeParser {
               properties['crossaxisalignment'] ?? 'start'),
           children: children,
         );
+      case 'expanded':
+        return Expanded(
+          flex: parseFlex(properties['flex'] ?? '0'),
+          child: child,
+        );
+      case 'flexible':
+        return Flexible(
+          flex: parseFlex(properties['flex'] ?? '0'),
+          fit: _parseFlexFit(properties['fit'] ?? 'tight'),
+          child: child,
+        );
+      case 'spacer':
+        return const Spacer();
+      case 'stack':
+        return Stack(children: children);
+      case 'wrap':
+        return Wrap(
+          direction: _parseAxis(properties['direction'] ?? 'horizontal'),
+          alignment: _parseWrapAlignment(properties['alignment'] ?? 'start'),
+          children: children,
+        );
+      case 'center':
+        return Center(child: child);
       case 'frog':
         return const Frog(color: FrogColor.green);
       default:
@@ -129,14 +169,21 @@ class CodeParser {
 
     for (final child in childItems) {
       final trimmed = child.trim();
+      if (trimmed.isEmpty) continue; // Skip empty items
+
       if (trimmed.startsWith('frog')) {
         if (frogIndex >= frogs.length) {
           throw 'Too many frogs specified';
         }
         children.add(frogs[frogIndex++]);
-      } else if (trimmed.isNotEmpty) {
-        // Recursively parse nested widgets
-        children.add(_parseWidget(trimmed, frogs.sublist(frogIndex)));
+      } else {
+        // Recursively parse nested widgets, but only if not empty
+        try {
+          children.add(_parseWidget(trimmed, frogs.sublist(frogIndex)));
+        } catch (e) {
+          // If parsing fails, skip this child widget
+          continue;
+        }
       }
     }
 
@@ -176,10 +223,12 @@ class CodeParser {
 
   static MainAxisAlignment _parseMainAxisAlignment(String value) {
     switch (value) {
-      case 'center':
-        return MainAxisAlignment.center;
+      case 'start':
+        return MainAxisAlignment.start;
       case 'end':
         return MainAxisAlignment.end;
+      case 'center':
+        return MainAxisAlignment.center;
       case 'spacebetween':
         return MainAxisAlignment.spaceBetween;
       case 'spacearound':
@@ -193,12 +242,16 @@ class CodeParser {
 
   static CrossAxisAlignment _parseCrossAxisAlignment(String value) {
     switch (value) {
-      case 'center':
-        return CrossAxisAlignment.center;
+      case 'start':
+        return CrossAxisAlignment.start;
       case 'end':
         return CrossAxisAlignment.end;
+      case 'center':
+        return CrossAxisAlignment.center;
       case 'stretch':
         return CrossAxisAlignment.stretch;
+      case 'baseline':
+        return CrossAxisAlignment.baseline;
       default:
         return CrossAxisAlignment.start;
     }
@@ -211,18 +264,45 @@ class CodeParser {
       case 'vertical':
         return Axis.vertical;
       default:
-        throw 'Unknown axis: $value';
+        return Axis.horizontal;
+    }
+  }
+
+  static int parseFlex(String value) {
+    try {
+      return int.parse(value);
+    } catch (e) {
+      return 1;
     }
   }
 
   static FlexFit _parseFlexFit(String value) {
     switch (value) {
-      case 'loose':
-        return FlexFit.loose;
       case 'tight':
         return FlexFit.tight;
+      case 'loose':
+        return FlexFit.loose;
       default:
-        throw 'Unknown flex fit: $value';
+        return FlexFit.tight;
+    }
+  }
+
+  static WrapAlignment _parseWrapAlignment(String value) {
+    switch (value) {
+      case 'start':
+        return WrapAlignment.start;
+      case 'end':
+        return WrapAlignment.end;
+      case 'center':
+        return WrapAlignment.center;
+      case 'spacebetween':
+        return WrapAlignment.spaceBetween;
+      case 'spacearound':
+        return WrapAlignment.spaceAround;
+      case 'spaceevenly':
+        return WrapAlignment.spaceEvenly;
+      default:
+        return WrapAlignment.start;
     }
   }
 }

@@ -3,6 +3,8 @@ import 'package:tcc2/models/level.dart';
 import 'package:tcc2/utils/code_parser.dart';
 import 'package:tcc2/widgets/game_components.dart';
 
+import '../l10n/app_localizations.dart';
+
 class GameArea extends StatelessWidget {
   final Level level;
   final String userInput;
@@ -17,7 +19,11 @@ class GameArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
+    final l10n = AppLocalizations.of(context)!;
+
     lilypadKeys.clear(); // Clear previous keys
+    frogKeys.clear(); // Clear previous keys
+
     final modifiedLilypadWidget = _addKeysToWidgets(level.lilypadWidget);
     return Container(
       height: screenSize.height,
@@ -43,6 +49,7 @@ class GameArea extends StatelessWidget {
                   );
                 },
               ),
+              l10n,
             ),
           ),
         ],

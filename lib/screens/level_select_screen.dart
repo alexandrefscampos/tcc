@@ -3,6 +3,8 @@ import 'package:tcc2/data/levels.dart';
 import 'package:tcc2/models/level.dart';
 import 'package:tcc2/screens/game_screen.dart';
 
+import '../l10n/app_localizations.dart';
+
 class LevelSelectScreen extends StatelessWidget {
   final int highestUnlockedLevel;
 
@@ -13,10 +15,12 @@ class LevelSelectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final levels = Levels.getLevels();
+    final l10n = AppLocalizations.of(context)!;
+    final levels = Levels.getLocalizedLevels(l10n);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Flex Frog - Levels'),
+        title: Text(l10n.levelSelectTitle),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -80,6 +84,8 @@ class LevelButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Material(
       color: Colors.transparent,
       child: InkWell(
@@ -114,7 +120,7 @@ class LevelButton extends StatelessWidget {
                         size: 32,
                       ),
                     Text(
-                      'Level ${level.number}',
+                      l10n.levelNumber(level.number),
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,

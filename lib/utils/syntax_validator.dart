@@ -1,7 +1,10 @@
 import 'package:tcc2/models/check_result.dart';
 
+import '../l10n/app_localizations.dart';
+
 class SyntaxValidator {
-  static SyntaxValidationResult validateCodeSyntax(String code) {
+  static SyntaxValidationResult validateCodeSyntax(
+      String code, AppLocalizations l10n) {
     // Remove extra whitespace and normalize the code
     code = code.trim().toLowerCase().replaceAll('\n', ' ');
 
@@ -10,8 +13,7 @@ class SyntaxValidator {
     if (widgetMatch == null) {
       return SyntaxValidationResult(
         isValid: false,
-        errorMessage:
-            'Invalid syntax: Please use a valid Flutter widget format like "row(...)" or "column(...)" or "flex(...)"',
+        errorMessage: l10n.syntaxErrorInvalidWidget,
       );
     }
 
@@ -21,13 +23,12 @@ class SyntaxValidator {
     if (!['row', 'column', 'flex'].contains(widgetName)) {
       return SyntaxValidationResult(
         isValid: false,
-        errorMessage:
-            'Invalid widget: "$widgetName" is not a valid Flutter widget. Use "row" or "column" or "flex".',
+        errorMessage: l10n.syntaxErrorUnknownWidget(widgetName),
       );
     }
 
     // Check for common syntax errors before general validation
-    final specificErrorCheck = _checkSpecificSyntaxErrors(code);
+    final specificErrorCheck = _checkSpecificSyntaxErrors(code, l10n);
     if (!specificErrorCheck.isValid) {
       return specificErrorCheck;
     }
@@ -36,7 +37,7 @@ class SyntaxValidator {
     if (!_hasMatchingParentheses(code)) {
       return SyntaxValidationResult(
         isValid: false,
-        errorMessage: 'Syntax error: Mismatched parentheses in your code.',
+        errorMessage: l10n.syntaxErrorMismatchedParentheses,
       );
     }
 
@@ -45,8 +46,7 @@ class SyntaxValidator {
       if (!code.contains('[') || !code.contains(']')) {
         return SyntaxValidationResult(
           isValid: false,
-          errorMessage:
-              'Syntax error: Children must be enclosed in square brackets [...].',
+          errorMessage: l10n.syntaxErrorMissingBrackets,
         );
       }
     }
@@ -54,13 +54,13 @@ class SyntaxValidator {
     return SyntaxValidationResult(isValid: true, errorMessage: '');
   }
 
-  static SyntaxValidationResult _checkSpecificSyntaxErrors(String code) {
+  static SyntaxValidationResult _checkSpecificSyntaxErrors(
+      String code, AppLocalizations l10n) {
     // Check for missing comma after mainAxisAlignment
     if (RegExp(r'mainaxisalignment:\s*\w+\s+[a-z]').hasMatch(code)) {
       return SyntaxValidationResult(
         isValid: false,
-        errorMessage:
-            'Missing comma after mainAxisAlignment. Example: "mainAxisAlignment: start,"',
+        errorMessage: l10n.syntaxErrorMissingCommaAfterMainAxis,
       );
     }
 
@@ -68,8 +68,7 @@ class SyntaxValidator {
     if (RegExp(r'crossaxisalignment:\s*\w+\s+[a-z]').hasMatch(code)) {
       return SyntaxValidationResult(
         isValid: false,
-        errorMessage:
-            'Missing comma after crossAxisAlignment. Example: "crossAxisAlignment: start,"',
+        errorMessage: l10n.syntaxErrorMissingCommaAfterCrossAxis,
       );
     }
 
@@ -77,8 +76,7 @@ class SyntaxValidator {
     if (RegExp(r'direction:\s*\w+\s+[a-z]').hasMatch(code)) {
       return SyntaxValidationResult(
         isValid: false,
-        errorMessage:
-            'Missing comma after direction. Example: "direction: horizontal,"',
+        errorMessage: l10n.syntaxErrorMissingCommaAfterDirection,
       );
     }
 
@@ -86,8 +84,7 @@ class SyntaxValidator {
     if (RegExp(r':\s*\w+\s+\w+\s*:').hasMatch(code)) {
       return SyntaxValidationResult(
         isValid: false,
-        errorMessage:
-            'Missing comma between properties. Each property should end with a comma.',
+        errorMessage: l10n.syntaxErrorMissingCommaBetweenProperties,
       );
     }
 
@@ -95,8 +92,7 @@ class SyntaxValidator {
     if (RegExp(r'\]\s*\)\s*[^,\s]').hasMatch(code)) {
       return SyntaxValidationResult(
         isValid: false,
-        errorMessage:
-            'Missing comma after children array. Example: "children: [frog()],"',
+        errorMessage: l10n.syntaxErrorMissingCommaAfterChildren,
       );
     }
 
@@ -106,8 +102,7 @@ class SyntaxValidator {
         .hasMatch(code)) {
       return SyntaxValidationResult(
         isValid: false,
-        errorMessage:
-            'Missing colon after property name. Example: "direction: horizontal"',
+        errorMessage: l10n.syntaxErrorMissingColon,
       );
     }
 
@@ -127,8 +122,7 @@ class SyntaxValidator {
       ].contains(value)) {
         return SyntaxValidationResult(
           isValid: false,
-          errorMessage:
-              'Invalid alignment value "$value". Use: start, end, center, spaceBetween, spaceAround, or spaceEvenly.',
+          errorMessage: l10n.syntaxErrorInvalidAlignment(value),
         );
       }
     }
@@ -140,8 +134,7 @@ class SyntaxValidator {
       if (!['horizontal', 'vertical'].contains(value)) {
         return SyntaxValidationResult(
           isValid: false,
-          errorMessage:
-              'Invalid direction value "$value". Use: horizontal or vertical.',
+          errorMessage: l10n.syntaxErrorInvalidDirection(value),
         );
       }
     }
@@ -150,8 +143,7 @@ class SyntaxValidator {
     if (RegExp(r'frog\s*(?!\(\))').hasMatch(code)) {
       return SyntaxValidationResult(
         isValid: false,
-        errorMessage:
-            'Missing parentheses after frog. Use "frog()" instead of "frog".',
+        errorMessage: l10n.syntaxErrorMissingParentheses,
       );
     }
 

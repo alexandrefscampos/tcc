@@ -6,14 +6,17 @@ import 'package:tcc2/models/level.dart';
 import 'package:tcc2/utils/position_calculator.dart';
 import 'package:tcc2/utils/syntax_validator.dart';
 
+import '../l10n/app_localizations.dart';
+
 class SolutionChecker {
   static Future<CheckResult> checkSolution(
     Level level,
     String userCode,
     List<GlobalKey> frogKeys,
     List<GlobalKey> lilypadKeys,
+    AppLocalizations l10n,
   ) async {
-    final syntaxValidation = SyntaxValidator.validateCodeSyntax(userCode);
+    final syntaxValidation = SyntaxValidator.validateCodeSyntax(userCode, l10n);
     if (!syntaxValidation.isValid) {
       return CheckResult(
         isCorrect: false,
@@ -33,16 +36,16 @@ class SolutionChecker {
       if (frogPositions.length != expectedFrogCount) {
         return CheckResult(
           isCorrect: false,
-          message:
-              'Incorrect number of frogs. Expected $expectedFrogCount frogs, but found ${frogPositions.length}.',
+          message: l10n.solutionIncorrectFrogCount(
+              expectedFrogCount, frogPositions.length),
         );
       }
 
       if (frogPositions.length != lilypadPositions.length) {
         return CheckResult(
           isCorrect: false,
-          message:
-              'Number of frogs (${frogPositions.length}) does not match number of lilypads (${lilypadPositions.length}).',
+          message: l10n.solutionMismatchedCount(
+              frogPositions.length, lilypadPositions.length),
         );
       }
 
@@ -52,19 +55,18 @@ class SolutionChecker {
       if (allFrogsCorrectlyPlaced) {
         return CheckResult(
           isCorrect: true,
-          message: 'Great job! You\'ve completed this level!',
+          message: l10n.solutionSuccess,
         );
       } else {
         return CheckResult(
           isCorrect: false,
-          message:
-              'Not quite right. Make sure each frog is on its matching colored lilypad.',
+          message: l10n.solutionIncorrectPlacement,
         );
       }
     } catch (e) {
       return CheckResult(
         isCorrect: false,
-        message: 'There was an error in your code: ${e.toString()}',
+        message: l10n.solutionCodeError(e.toString()),
       );
     }
   }
