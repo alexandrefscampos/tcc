@@ -98,305 +98,251 @@ abstract class AppLocalizations {
     Locale('pt')
   ];
 
-  /// Title of the application
+  /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
   /// **'Flutter Flex Frog'**
   String get appTitle;
 
-  /// Title for level selection screen
+  /// No description provided for @levelSelectTitle.
   ///
   /// In en, this message translates to:
   /// **'Flutter Flex Frog - Levels'**
   String get levelSelectTitle;
 
-  /// Display level number
+  /// No description provided for @levelNumber.
   ///
   /// In en, this message translates to:
   /// **'Level {number}'**
-  String levelNumber(int number);
+  String levelNumber(Object number);
 
-  /// Success message when completing a level
+  /// No description provided for @congratulations.
   ///
   /// In en, this message translates to:
   /// **'Congratulations! 🎉'**
   String get congratulations;
 
-  /// Message when completing a level
+  /// No description provided for @levelCompleted.
   ///
   /// In en, this message translates to:
   /// **'You\'ve completed level {number}!'**
-  String levelCompleted(int number);
+  String levelCompleted(Object number);
 
-  /// Button to go to next level
+  /// No description provided for @nextLevel.
   ///
   /// In en, this message translates to:
   /// **'Next Level'**
   String get nextLevel;
 
-  /// Title when all levels are completed
+  /// No description provided for @gameComplete.
   ///
   /// In en, this message translates to:
   /// **'🏆 Game Complete! 🏆'**
   String get gameComplete;
 
-  /// Message when completing the entire game
+  /// No description provided for @gameCompleteMessage.
   ///
   /// In en, this message translates to:
   /// **'Congratulations! You\'ve mastered Flutter layouts!'**
   String get gameCompleteMessage;
 
-  /// Button to restart the game
+  /// No description provided for @playAgain.
   ///
   /// In en, this message translates to:
   /// **'Play Again'**
   String get playAgain;
 
-  /// Tooltip for reset button
+  /// No description provided for @resetTooltip.
   ///
   /// In en, this message translates to:
   /// **'Reset to original code'**
   String get resetTooltip;
 
-  /// Tooltip for format code button
+  /// No description provided for @formatTooltip.
   ///
   /// In en, this message translates to:
   /// **'Format code'**
   String get formatTooltip;
 
-  /// Hint text for code input field
+  /// No description provided for @codeHint.
   ///
   /// In en, this message translates to:
   /// **'Enter your Flutter layout code here...'**
   String get codeHint;
 
-  /// Message while checking solution
+  /// No description provided for @checkingSolution.
   ///
   /// In en, this message translates to:
   /// **'Checking solution...'**
   String get checkingSolution;
 
-  /// Error message when code formatting fails
+  /// No description provided for @codeFormattingFailed.
   ///
   /// In en, this message translates to:
   /// **'Code formatting failed - please check your syntax'**
   String get codeFormattingFailed;
 
-  /// Instructions for level 1
+  /// No description provided for @level1Instructions.
   ///
   /// In en, this message translates to:
-  /// **'Center the frogs vertically using Column and mainAxisAlignment.'**
+  /// **'Welcome to Flutter Flex Frog! Your goal is to guide the frog to the lilypad on the right.\n\nUse the mainAxisAlignment property to position items horizontally in a Row. Try changing mainAxisAlignment from start to end.'**
   String get level1Instructions;
 
-  /// Explanation for level 1
+  /// No description provided for @level2Instructions.
   ///
   /// In en, this message translates to:
-  /// **'Column widgets arrange their children vertically. mainAxisAlignment controls the vertical positioning.'**
-  String get level1Explanation;
-
-  /// Instructions for level 2
-  ///
-  /// In en, this message translates to:
-  /// **'Center the frogs horizontally using Row and mainAxisAlignment.'**
+  /// **'Help the frogs reach their lilypads in the center.\n\nThe mainAxisAlignment property accepts these values:\n• start - aligns to the left\n• end - aligns to the right\n• center - centers the items'**
   String get level2Instructions;
 
-  /// Explanation for level 2
+  /// No description provided for @level3Instructions.
   ///
   /// In en, this message translates to:
-  /// **'Row widgets arrange their children horizontally. mainAxisAlignment controls the horizontal positioning.'**
-  String get level2Explanation;
-
-  /// Instructions for level 3
-  ///
-  /// In en, this message translates to:
-  /// **'Distribute the frogs evenly using Row and mainAxisAlignment.'**
+  /// **'Spread the frogs out evenly across the pond.\n\nUse mainAxisAlignment: spaceEvenly to distribute items with equal spacing around them, similar to CSS justify-content: space-evenly.'**
   String get level3Instructions;
 
-  /// Explanation for level 3
+  /// No description provided for @level4Instructions.
   ///
   /// In en, this message translates to:
-  /// **'Use spaceEvenly to distribute widgets with equal spacing around them.'**
-  String get level3Explanation;
-
-  /// Instructions for level 4
-  ///
-  /// In en, this message translates to:
-  /// **'Arrange the frogs horizontally with equal spacing using Row and mainAxisAlignment.'**
+  /// **'Position the frogs with space only between them.\n\nUse mainAxisAlignment: spaceBetween to place equal spacing between items, but not at the edges.'**
   String get level4Instructions;
 
-  /// Explanation for level 4
+  /// No description provided for @level5Instructions.
   ///
   /// In en, this message translates to:
-  /// **'Row widgets arrange their children horizontally. Use spaceBetween to distribute them with equal spacing.'**
-  String get level4Explanation;
-
-  /// Instructions for level 5
-  ///
-  /// In en, this message translates to:
-  /// **'Position the frogs at the bottom using Column and mainAxisAlignment.'**
+  /// **'Move the frogs to the bottom of the pond.\n\nColumn arranges children vertically. Use mainAxisAlignment: end to position items at the bottom of a Column.'**
   String get level5Instructions;
 
-  /// Explanation for level 5
+  /// No description provided for @level6Instructions.
   ///
   /// In en, this message translates to:
-  /// **'Use mainAxisAlignment: MainAxisAlignment.end to position items at the bottom of a Column.'**
-  String get level5Explanation;
-
-  /// Instructions for level 6
-  ///
-  /// In en, this message translates to:
-  /// **'Center the frogs both horizontally and vertically using nested Column and Row.'**
+  /// **'Center the frog both horizontally and vertically.\n\nNest a Row inside a Column to control both axes:\n• Column\'s mainAxisAlignment controls vertical positioning\n• Row\'s mainAxisAlignment controls horizontal positioning'**
   String get level6Instructions;
 
-  /// Explanation for level 6
+  /// No description provided for @level7Instructions.
   ///
   /// In en, this message translates to:
-  /// **'You can nest Row inside Column to control both horizontal and vertical alignment.'**
-  String get level6Explanation;
-
-  /// Instructions for level 7
-  ///
-  /// In en, this message translates to:
-  /// **'Position the frogs at the bottom with equal spacing using nested widgets.'**
+  /// **'Position the frogs at the bottom with equal spacing between them.\n\nCombine Column and Row:\n• Use Column with mainAxisAlignment: end for bottom positioning\n• Use Row with mainAxisAlignment: spaceBetween for horizontal spacing'**
   String get level7Instructions;
 
-  /// Explanation for level 7
+  /// No description provided for @level8Instructions.
   ///
   /// In en, this message translates to:
-  /// **'Combine Column and Row with different alignment properties to achieve complex layouts.'**
-  String get level7Explanation;
-
-  /// Instructions for level 8
-  ///
-  /// In en, this message translates to:
-  /// **'Arrange the frogs vertically using Column.'**
+  /// **'Stack the frogs vertically.\n\nColumn arranges children from top to bottom, like CSS flex-direction: column. This is the vertical equivalent of Row.'**
   String get level8Instructions;
 
-  /// Explanation for level 8
+  /// No description provided for @level9Instructions.
   ///
   /// In en, this message translates to:
-  /// **'Column widgets arrange their children vertically from top to bottom.'**
-  String get level8Explanation;
-
-  /// Instructions for level 9
-  ///
-  /// In en, this message translates to:
-  /// **'Position the frogs at the bottom using Flex and direction properties.'**
+  /// **'Use Flex to position the frogs at the bottom.\n\nFlex is the base widget for both Row and Column:\n• direction: horizontal creates a Row\n• direction: vertical creates a Column\n• Use mainAxisAlignment: end to position at the bottom'**
   String get level9Instructions;
 
-  /// Explanation for level 9
-  ///
-  /// In en, this message translates to:
-  /// **'Flex widgets can be configured to work like Row or Column using the direction property.'**
-  String get level9Explanation;
-
-  /// Error when no valid widget format is found
+  /// No description provided for @syntaxErrorInvalidWidget.
   ///
   /// In en, this message translates to:
   /// **'Invalid syntax: Please use a valid Flutter widget format like \"row(...)\" or \"column(...)\" or \"flex(...)\"'**
   String get syntaxErrorInvalidWidget;
 
-  /// Error when unknown widget is used
+  /// No description provided for @syntaxErrorUnknownWidget.
   ///
   /// In en, this message translates to:
   /// **'Invalid widget: \"{widgetName}\" is not a valid Flutter widget. Use \"row\" or \"column\" or \"flex\".'**
-  String syntaxErrorUnknownWidget(String widgetName);
+  String syntaxErrorUnknownWidget(Object widgetName);
 
-  /// Error when parentheses don't match
+  /// No description provided for @syntaxErrorMismatchedParentheses.
   ///
   /// In en, this message translates to:
   /// **'Syntax error: Mismatched parentheses in your code.'**
   String get syntaxErrorMismatchedParentheses;
 
-  /// Error when square brackets are missing for children
+  /// No description provided for @syntaxErrorMissingBrackets.
   ///
   /// In en, this message translates to:
   /// **'Syntax error: Children must be enclosed in square brackets [...].'**
   String get syntaxErrorMissingBrackets;
 
-  /// Error when comma is missing after mainAxisAlignment
+  /// No description provided for @syntaxErrorMissingCommaAfterMainAxis.
   ///
   /// In en, this message translates to:
   /// **'Missing comma after mainAxisAlignment. Example: \"mainAxisAlignment: start,\"'**
   String get syntaxErrorMissingCommaAfterMainAxis;
 
-  /// Error when comma is missing after crossAxisAlignment
+  /// No description provided for @syntaxErrorMissingCommaAfterCrossAxis.
   ///
   /// In en, this message translates to:
   /// **'Missing comma after crossAxisAlignment. Example: \"crossAxisAlignment: start,\"'**
   String get syntaxErrorMissingCommaAfterCrossAxis;
 
-  /// Error when comma is missing after direction
+  /// No description provided for @syntaxErrorMissingCommaAfterDirection.
   ///
   /// In en, this message translates to:
   /// **'Missing comma after direction. Example: \"direction: horizontal,\"'**
   String get syntaxErrorMissingCommaAfterDirection;
 
-  /// Error when comma is missing between properties
+  /// No description provided for @syntaxErrorMissingCommaBetweenProperties.
   ///
   /// In en, this message translates to:
   /// **'Missing comma between properties. Each property should end with a comma.'**
   String get syntaxErrorMissingCommaBetweenProperties;
 
-  /// Error when comma is missing after children array
+  /// No description provided for @syntaxErrorMissingCommaAfterChildren.
   ///
   /// In en, this message translates to:
   /// **'Missing comma after children array. Example: \"children: [frog()],\"'**
   String get syntaxErrorMissingCommaAfterChildren;
 
-  /// Error when colon is missing after property name
+  /// No description provided for @syntaxErrorMissingColon.
   ///
   /// In en, this message translates to:
   /// **'Missing colon after property name. Example: \"direction: horizontal\"'**
   String get syntaxErrorMissingColon;
 
-  /// Error when invalid alignment value is used
+  /// No description provided for @syntaxErrorInvalidAlignment.
   ///
   /// In en, this message translates to:
   /// **'Invalid alignment value \"{value}\". Use: start, end, center, spaceBetween, spaceAround, or spaceEvenly.'**
-  String syntaxErrorInvalidAlignment(String value);
+  String syntaxErrorInvalidAlignment(Object value);
 
-  /// Error when invalid direction value is used
+  /// No description provided for @syntaxErrorInvalidDirection.
   ///
   /// In en, this message translates to:
   /// **'Invalid direction value \"{value}\". Use: horizontal or vertical.'**
-  String syntaxErrorInvalidDirection(String value);
+  String syntaxErrorInvalidDirection(Object value);
 
-  /// Error when parentheses are missing after frog
+  /// No description provided for @syntaxErrorMissingParentheses.
   ///
   /// In en, this message translates to:
   /// **'Missing parentheses after frog. Use \"frog()\" instead of \"frog\".'**
   String get syntaxErrorMissingParentheses;
 
-  /// Error when wrong number of frogs
+  /// No description provided for @solutionIncorrectFrogCount.
   ///
   /// In en, this message translates to:
   /// **'Incorrect number of frogs. Expected {expected} frogs, but found {found}.'**
-  String solutionIncorrectFrogCount(int expected, int found);
+  String solutionIncorrectFrogCount(Object expected, Object found);
 
-  /// Error when frog and lilypad counts don't match
+  /// No description provided for @solutionMismatchedCount.
   ///
   /// In en, this message translates to:
   /// **'Number of frogs ({frogCount}) does not match number of lilypads ({lilypadCount}).'**
-  String solutionMismatchedCount(int frogCount, int lilypadCount);
+  String solutionMismatchedCount(Object frogCount, Object lilypadCount);
 
-  /// Success message when level is completed
+  /// No description provided for @solutionSuccess.
   ///
   /// In en, this message translates to:
   /// **'Great job! You\'ve completed this level!'**
   String get solutionSuccess;
 
-  /// Error when frogs are not correctly placed
+  /// No description provided for @solutionIncorrectPlacement.
   ///
   /// In en, this message translates to:
   /// **'Not quite right. Make sure each frog is on its matching colored lilypad.'**
   String get solutionIncorrectPlacement;
 
-  /// General error message when code has issues
+  /// No description provided for @solutionCodeError.
   ///
   /// In en, this message translates to:
   /// **'There was an error in your code: {error}'**
-  String solutionCodeError(String error);
+  String solutionCodeError(Object error);
 }
 
 class _AppLocalizationsDelegate

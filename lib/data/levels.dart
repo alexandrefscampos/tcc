@@ -24,7 +24,6 @@ class Levels {
   mainAxisAlignment: start,
   children: [frog()]
 )''',
-        explanation: '', // Will be set dynamically
       ),
       Level(
         number: 2,
@@ -48,7 +47,6 @@ class Levels {
     mainAxisAlignment: start,
     children: [frog(), frog()]
   )''',
-        explanation: '', // Will be set dynamically
       ),
       Level(
         number: 3,
@@ -75,7 +73,6 @@ class Levels {
     mainAxisAlignment: start,
     children: [frog(), frog(), frog()]
   )''',
-        explanation: '', // Will be set dynamically
       ),
       Level(
         number: 4,
@@ -97,7 +94,6 @@ class Levels {
   mainAxisAlignment: start,
   children: [frog(), frog(), frog()]
 )''',
-        explanation: '', // Will be set dynamically
       ),
       Level(
         number: 5,
@@ -127,7 +123,6 @@ class Levels {
     frog(),
   ]
 )''',
-        explanation: '', // Will be set dynamically
       ),
       Level(
         number: 6,
@@ -155,7 +150,6 @@ class Levels {
     )
   ]
 )''',
-        explanation: '', // Will be set dynamically
       ),
       Level(
         number: 7,
@@ -185,7 +179,6 @@ class Levels {
     ),
   ]
 )''',
-        explanation: '', // Will be set dynamically
       ),
       Level(
         number: 8,
@@ -205,7 +198,6 @@ class Levels {
         preBuiltCode: '''row(
   children: [frog(), frog(), frog()]
 )''',
-        explanation: '', // Will be set dynamically
       ),
       Level(
         number: 9,
@@ -227,7 +219,6 @@ class Levels {
   direction: horizontal,
   children: [frog(), frog(), frog()]
 )''',
-        explanation: '', // Will be set dynamically
       ),
     ];
   }
@@ -239,7 +230,6 @@ class Levels {
       return Level(
         number: level.number,
         instructions: _getInstructionsForLevel(level.number, l10n),
-        explanation: _getExplanationForLevel(level.number, l10n),
         frogWidget: level.frogWidget,
         lilypadWidget: level.lilypadWidget,
         initialPositions: level.initialPositions,
@@ -269,32 +259,6 @@ class Levels {
         return l10n.level8Instructions;
       case 9:
         return l10n.level9Instructions;
-      default:
-        return '';
-    }
-  }
-
-  static String _getExplanationForLevel(
-      int levelNumber, AppLocalizations l10n) {
-    switch (levelNumber) {
-      case 1:
-        return l10n.level1Explanation;
-      case 2:
-        return l10n.level2Explanation;
-      case 3:
-        return l10n.level3Explanation;
-      case 4:
-        return l10n.level4Explanation;
-      case 5:
-        return l10n.level5Explanation;
-      case 6:
-        return l10n.level6Explanation;
-      case 7:
-        return l10n.level7Explanation;
-      case 8:
-        return l10n.level8Explanation;
-      case 9:
-        return l10n.level9Explanation;
       default:
         return '';
     }

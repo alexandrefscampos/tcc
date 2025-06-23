@@ -15,7 +15,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get levelSelectTitle => 'Flutter Sapo Flex - Níveis';
 
   @override
-  String levelNumber(int number) {
+  String levelNumber(Object number) {
     return 'Nível $number';
   }
 
@@ -23,7 +23,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get congratulations => 'Parabéns! 🎉';
 
   @override
-  String levelCompleted(int number) {
+  String levelCompleted(Object number) {
     return 'Você completou o nível $number!';
   }
 
@@ -58,82 +58,46 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get level1Instructions =>
-      'Centralize os sapos verticalmente usando Column e mainAxisAlignment.';
-
-  @override
-  String get level1Explanation =>
-      'Widgets Column organizam seus filhos verticalmente. mainAxisAlignment controla o posicionamento vertical.';
+      'Bem-vindo ao Flutter Sapo Flex! Seu objetivo é guiar o sapo até a vitória-régia à direita.\n\nUse a propriedade mainAxisAlignment para posicionar itens horizontalmente em Row. Tente mudar mainAxisAlignment de start para end.';
 
   @override
   String get level2Instructions =>
-      'Centralize os sapos horizontalmente usando Row e mainAxisAlignment.';
-
-  @override
-  String get level2Explanation =>
-      'Widgets Row organizam seus filhos horizontalmente. mainAxisAlignment controla o posicionamento horizontal.';
+      'Ajude os sapos a alcançarem suas vitórias-régias no centro.\n\nA propriedade mainAxisAlignment aceita estes valores:\n• start - alinha à esquerda\n• end - alinha à direita\n• center - centraliza os itens';
 
   @override
   String get level3Instructions =>
-      'Distribua os sapos uniformemente usando Row e mainAxisAlignment.';
-
-  @override
-  String get level3Explanation =>
-      'Use spaceEvenly para distribuir widgets com espaçamento igual ao redor deles.';
+      'Espalhe os sapos uniformemente pelo lago.\n\nUse mainAxisAlignment: spaceEvenly para distribuir itens com espaçamento igual ao redor deles, similar ao CSS justify-content: space-evenly.';
 
   @override
   String get level4Instructions =>
-      'Organize os sapos horizontalmente com espaçamento igual usando Row e mainAxisAlignment.';
-
-  @override
-  String get level4Explanation =>
-      'Widgets Row organizam seus filhos horizontalmente. Use spaceBetween para distribuí-los com espaçamento igual.';
+      'Posicione os sapos com espaço apenas entre eles.\n\nUse mainAxisAlignment: spaceBetween para colocar espaçamento igual entre itens, mas não nas bordas.';
 
   @override
   String get level5Instructions =>
-      'Posicione os sapos na parte inferior usando Column e mainAxisAlignment.';
-
-  @override
-  String get level5Explanation =>
-      'Use mainAxisAlignment: MainAxisAlignment.end para posicionar itens na parte inferior de uma Column.';
+      'Mova os sapos para a parte inferior do lago.\n\nColumn organiza filhos verticalmente. Use mainAxisAlignment: end para posicionar itens na parte inferior de uma Column.';
 
   @override
   String get level6Instructions =>
-      'Centralize os sapos tanto horizontal quanto verticalmente usando Column e Row aninhados.';
-
-  @override
-  String get level6Explanation =>
-      'Você pode aninhar Row dentro de Column para controlar tanto o alinhamento horizontal quanto vertical.';
+      'Centralize o sapo tanto horizontal quanto verticalmente.\n\nAninhe um Row dentro de uma Column para controlar ambos os eixos:\n• mainAxisAlignment da Column controla posicionamento vertical\n• mainAxisAlignment da Row controla posicionamento horizontal';
 
   @override
   String get level7Instructions =>
-      'Posicione os sapos na parte inferior com espaçamento igual usando widgets aninhados.';
-
-  @override
-  String get level7Explanation =>
-      'Combine Column e Row com diferentes propriedades de alinhamento para conseguir layouts complexos.';
+      'Posicione os sapos na parte inferior com espaçamento igual entre eles.\n\nCombine Column e Row:\n• Use Column com mainAxisAlignment: end para posicionamento inferior\n• Use Row com mainAxisAlignment: spaceBetween para espaçamento horizontal';
 
   @override
   String get level8Instructions =>
-      'Organize os sapos verticalmente usando Column.';
-
-  @override
-  String get level8Explanation =>
-      'Widgets Column organizam seus filhos verticalmente de cima para baixo.';
+      'Empilhe os sapos verticalmente.\n\nColumn organiza filhos de cima para baixo, como CSS flex-direction: column. Este é o equivalente vertical de Row.';
 
   @override
   String get level9Instructions =>
-      'Posicione os sapos na parte inferior usando Flex e propriedades de direção.';
-
-  @override
-  String get level9Explanation =>
-      'Widgets Flex podem ser configurados para funcionar como Row ou Column usando a propriedade direction.';
+      'Use Flex para posicionar os sapos na parte inferior.\n\nFlex é o widget base tanto para Row quanto para Column:\n• direction: horizontal cria um Row\n• direction: vertical cria um Column\n• Use mainAxisAlignment: end para posicionar na parte inferior';
 
   @override
   String get syntaxErrorInvalidWidget =>
       'Sintaxe inválida: Use um formato válido de widget Flutter como \"row(...)\" ou \"column(...)\" ou \"flex(...)\"';
 
   @override
-  String syntaxErrorUnknownWidget(String widgetName) {
+  String syntaxErrorUnknownWidget(Object widgetName) {
     return 'Widget inválido: \"$widgetName\" não é um widget Flutter válido. Use \"row\" ou \"column\" ou \"flex\".';
   }
 
@@ -170,12 +134,12 @@ class AppLocalizationsPt extends AppLocalizations {
       'Dois pontos faltando após nome da propriedade. Exemplo: \"direction: horizontal\"';
 
   @override
-  String syntaxErrorInvalidAlignment(String value) {
+  String syntaxErrorInvalidAlignment(Object value) {
     return 'Valor de alinhamento inválido \"$value\". Use: start, end, center, spaceBetween, spaceAround, ou spaceEvenly.';
   }
 
   @override
-  String syntaxErrorInvalidDirection(String value) {
+  String syntaxErrorInvalidDirection(Object value) {
     return 'Valor de direção inválido \"$value\". Use: horizontal ou vertical.';
   }
 
@@ -184,12 +148,12 @@ class AppLocalizationsPt extends AppLocalizations {
       'Parênteses faltando após frog. Use \"frog()\" ao invés de \"frog\".';
 
   @override
-  String solutionIncorrectFrogCount(int expected, int found) {
+  String solutionIncorrectFrogCount(Object expected, Object found) {
     return 'Número incorreto de sapos. Esperado $expected sapos, mas encontrou $found.';
   }
 
   @override
-  String solutionMismatchedCount(int frogCount, int lilypadCount) {
+  String solutionMismatchedCount(Object frogCount, Object lilypadCount) {
     return 'Número de sapos ($frogCount) não corresponde ao número de vitórias-régias ($lilypadCount).';
   }
 
@@ -202,7 +166,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Não está certo ainda. Certifique-se de que cada sapo está na vitória-régia da cor correspondente.';
 
   @override
-  String solutionCodeError(String error) {
+  String solutionCodeError(Object error) {
     return 'Houve um erro no seu código: $error';
   }
 }

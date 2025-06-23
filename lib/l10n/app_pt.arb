@@ -1,269 +1,44 @@
 {
   "@@locale": "pt",
   "appTitle": "Flutter Sapo Flex",
-  "@appTitle": {
-    "description": "Título da aplicação"
-  },
   "levelSelectTitle": "Flutter Sapo Flex - Níveis",
-  "@levelSelectTitle": {
-    "description": "Título da tela de seleção de níveis"
-  },
   "levelNumber": "Nível {number}",
-  "@levelNumber": {
-    "description": "Exibir número do nível",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "congratulations": "Parabéns! 🎉",
-  "@congratulations": {
-    "description": "Mensagem de sucesso ao completar um nível"
-  },
   "levelCompleted": "Você completou o nível {number}!",
-  "@levelCompleted": {
-    "description": "Mensagem ao completar um nível",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "nextLevel": "Próximo Nível",
-  "@nextLevel": {
-    "description": "Botão para ir ao próximo nível"
-  },
   "gameComplete": "🏆 Jogo Completo! 🏆",
-  "@gameComplete": {
-    "description": "Título quando todos os níveis são completados"
-  },
   "gameCompleteMessage": "Parabéns! Você dominou os layouts do Flutter!",
-  "@gameCompleteMessage": {
-    "description": "Mensagem ao completar todo o jogo"
-  },
   "playAgain": "Jogar Novamente",
-  "@playAgain": {
-    "description": "Botão para reiniciar o jogo"
-  },
   "resetTooltip": "Resetar para código original",
-  "@resetTooltip": {
-    "description": "Dica do botão de reset"
-  },
   "formatTooltip": "Formatar código",
-  "@formatTooltip": {
-    "description": "Dica do botão de formatar código"
-  },
   "codeHint": "Digite seu código de layout Flutter aqui...",
-  "@codeHint": {
-    "description": "Texto de dica para o campo de entrada de código"
-  },
   "checkingSolution": "Verificando solução...",
-  "@checkingSolution": {
-    "description": "Mensagem enquanto verifica a solução"
-  },
   "codeFormattingFailed": "Formatação do código falhou - verifique sua sintaxe",
-  "@codeFormattingFailed": {
-    "description": "Mensagem de erro quando a formatação do código falha"
-  },
-  
-  "level1Instructions": "Centralize os sapos verticalmente usando Column e mainAxisAlignment.",
-  "@level1Instructions": {
-    "description": "Instruções para o nível 1"
-  },
-  "level1Explanation": "Widgets Column organizam seus filhos verticalmente. mainAxisAlignment controla o posicionamento vertical.",
-  "@level1Explanation": {
-    "description": "Explicação para o nível 1"
-  },
-  
-  "level2Instructions": "Centralize os sapos horizontalmente usando Row e mainAxisAlignment.",
-  "@level2Instructions": {
-    "description": "Instruções para o nível 2"
-  },
-  "level2Explanation": "Widgets Row organizam seus filhos horizontalmente. mainAxisAlignment controla o posicionamento horizontal.",
-  "@level2Explanation": {
-    "description": "Explicação para o nível 2"
-  },
-  
-  "level3Instructions": "Distribua os sapos uniformemente usando Row e mainAxisAlignment.",
-  "@level3Instructions": {
-    "description": "Instruções para o nível 3"
-  },
-  "level3Explanation": "Use spaceEvenly para distribuir widgets com espaçamento igual ao redor deles.",
-  "@level3Explanation": {
-    "description": "Explicação para o nível 3"
-  },
-  
-  "level4Instructions": "Organize os sapos horizontalmente com espaçamento igual usando Row e mainAxisAlignment.",
-  "@level4Instructions": {
-    "description": "Instruções para o nível 4"
-  },
-  "level4Explanation": "Widgets Row organizam seus filhos horizontalmente. Use spaceBetween para distribuí-los com espaçamento igual.",
-  "@level4Explanation": {
-    "description": "Explicação para o nível 4"
-  },
-  
-  "level5Instructions": "Posicione os sapos na parte inferior usando Column e mainAxisAlignment.",
-  "@level5Instructions": {
-    "description": "Instruções para o nível 5"
-  },
-  "level5Explanation": "Use mainAxisAlignment: MainAxisAlignment.end para posicionar itens na parte inferior de uma Column.",
-  "@level5Explanation": {
-    "description": "Explicação para o nível 5"
-  },
-  
-  "level6Instructions": "Centralize os sapos tanto horizontal quanto verticalmente usando Column e Row aninhados.",
-  "@level6Instructions": {
-    "description": "Instruções para o nível 6"
-  },
-  "level6Explanation": "Você pode aninhar Row dentro de Column para controlar tanto o alinhamento horizontal quanto vertical.",
-  "@level6Explanation": {
-    "description": "Explicação para o nível 6"
-  },
-  
-  "level7Instructions": "Posicione os sapos na parte inferior com espaçamento igual usando widgets aninhados.",
-  "@level7Instructions": {
-    "description": "Instruções para o nível 7"
-  },
-  "level7Explanation": "Combine Column e Row com diferentes propriedades de alinhamento para conseguir layouts complexos.",
-  "@level7Explanation": {
-    "description": "Explicação para o nível 7"
-  },
-  
-  "level8Instructions": "Organize os sapos verticalmente usando Column.",
-  "@level8Instructions": {
-    "description": "Instruções para o nível 8"
-  },
-  "level8Explanation": "Widgets Column organizam seus filhos verticalmente de cima para baixo.",
-  "@level8Explanation": {
-    "description": "Explicação para o nível 8"
-  },
-  
-  "level9Instructions": "Posicione os sapos na parte inferior usando Flex e propriedades de direção.",
-  "@level9Instructions": {
-    "description": "Instruções para o nível 9"
-  },
-  "level9Explanation": "Widgets Flex podem ser configurados para funcionar como Row ou Column usando a propriedade direction.",
-  "@level9Explanation": {
-    "description": "Explicação para o nível 9"
-  },
-
+  "level1Instructions": "Bem-vindo ao Flutter Sapo Flex! Seu objetivo é guiar o sapo até a vitória-régia à direita.\n\nUse a propriedade mainAxisAlignment para posicionar itens horizontalmente em Row. Tente mudar mainAxisAlignment de start para end.",
+  "level2Instructions": "Ajude os sapos a alcançarem suas vitórias-régias no centro.\n\nA propriedade mainAxisAlignment aceita estes valores:\n• start - alinha à esquerda\n• end - alinha à direita\n• center - centraliza os itens",
+  "level3Instructions": "Ajude todos os três sapos a encontrarem suas vitórias-régias usando apenas mainAxisAlignment. Desta vez, as vitórias-régias têm muito espaço ao redor delas.\n\nSe você esquecer os valores possíveis para mainAxisAlignment, lembre-se: start, end, center, spaceBetween, spaceAround, spaceEvenly.",
+  "level4Instructions": "Agora as vitórias-régias nas bordas se afastaram para a margem, aumentando o espaço entre elas. Use mainAxisAlignment. Desta vez, as vitórias-régias têm espaçamento igual entre elas.\n\nTente mainAxisAlignment: spaceBetween para colocar espaçamento igual entre itens, mas não nas bordas.",
+  "level5Instructions": "Mova os sapos para a parte inferior do lago.\n\nColumn organiza filhos verticalmente. Use mainAxisAlignment: end para posicionar itens na parte inferior de uma Column.",
+  "level6Instructions": "Centralize o sapo tanto horizontal quanto verticalmente.\n\nAninhe um Row dentro de uma Column para controlar ambos os eixos:\n• mainAxisAlignment da Column controla posicionamento vertical\n• mainAxisAlignment da Row controla posicionamento horizontal",
+  "level7Instructions": "Posicione os sapos na parte inferior com espaçamento igual entre eles.\n\nCombine Column e Row:\n• Use Column com mainAxisAlignment: end para posicionamento inferior\n• Use Row com mainAxisAlignment: spaceBetween para espaçamento horizontal",
+  "level8Instructions": "Empilhe os sapos verticalmente.\n\nColumn organiza filhos de cima para baixo. Este é o equivalente vertical de Row.",
+  "level9Instructions": "Use Flex para posicionar os sapos na parte inferior.\n\nFlex é o widget base tanto para Row quanto para Column:\n• direction: horizontal cria um Row\n• direction: vertical cria um Column\n• Use mainAxisAlignment: end para posicionar na parte inferior",
   "syntaxErrorInvalidWidget": "Sintaxe inválida: Use um formato válido de widget Flutter como \"row(...)\" ou \"column(...)\" ou \"flex(...)\"",
-  "@syntaxErrorInvalidWidget": {
-    "description": "Erro quando não é encontrado formato válido de widget"
-  },
   "syntaxErrorUnknownWidget": "Widget inválido: \"{widgetName}\" não é um widget Flutter válido. Use \"row\" ou \"column\" ou \"flex\".",
-  "@syntaxErrorUnknownWidget": {
-    "description": "Erro quando widget desconhecido é usado",
-    "placeholders": {
-      "widgetName": {
-        "type": "String",
-        "example": "div"
-      }
-    }
-  },
   "syntaxErrorMismatchedParentheses": "Erro de sintaxe: Parênteses desbalanceados no seu código.",
-  "@syntaxErrorMismatchedParentheses": {
-    "description": "Erro quando parênteses não combinam"
-  },
   "syntaxErrorMissingBrackets": "Erro de sintaxe: Children devem estar dentro de colchetes [...].",
-  "@syntaxErrorMissingBrackets": {
-    "description": "Erro quando colchetes estão faltando para children"
-  },
   "syntaxErrorMissingCommaAfterMainAxis": "Vírgula faltando após mainAxisAlignment. Exemplo: \"mainAxisAlignment: start,\"",
-  "@syntaxErrorMissingCommaAfterMainAxis": {
-    "description": "Erro quando vírgula está faltando após mainAxisAlignment"
-  },
   "syntaxErrorMissingCommaAfterCrossAxis": "Vírgula faltando após crossAxisAlignment. Exemplo: \"crossAxisAlignment: start,\"",
-  "@syntaxErrorMissingCommaAfterCrossAxis": {
-    "description": "Erro quando vírgula está faltando após crossAxisAlignment"
-  },
   "syntaxErrorMissingCommaAfterDirection": "Vírgula faltando após direction. Exemplo: \"direction: horizontal,\"",
-  "@syntaxErrorMissingCommaAfterDirection": {
-    "description": "Erro quando vírgula está faltando após direction"
-  },
   "syntaxErrorMissingCommaBetweenProperties": "Vírgula faltando entre propriedades. Cada propriedade deve terminar com vírgula.",
-  "@syntaxErrorMissingCommaBetweenProperties": {
-    "description": "Erro quando vírgula está faltando entre propriedades"
-  },
   "syntaxErrorMissingCommaAfterChildren": "Vírgula faltando após array de children. Exemplo: \"children: [frog()],\"",
-  "@syntaxErrorMissingCommaAfterChildren": {
-    "description": "Erro quando vírgula está faltando após array de children"
-  },
   "syntaxErrorMissingColon": "Dois pontos faltando após nome da propriedade. Exemplo: \"direction: horizontal\"",
-  "@syntaxErrorMissingColon": {
-    "description": "Erro quando dois pontos estão faltando após nome da propriedade"
-  },
   "syntaxErrorInvalidAlignment": "Valor de alinhamento inválido \"{value}\". Use: start, end, center, spaceBetween, spaceAround, ou spaceEvenly.",
-  "@syntaxErrorInvalidAlignment": {
-    "description": "Erro quando valor de alinhamento inválido é usado",
-    "placeholders": {
-      "value": {
-        "type": "String",
-        "example": "middle"
-      }
-    }
-  },
   "syntaxErrorInvalidDirection": "Valor de direção inválido \"{value}\". Use: horizontal ou vertical.",
-  "@syntaxErrorInvalidDirection": {
-    "description": "Erro quando valor de direção inválido é usado",
-    "placeholders": {
-      "value": {
-        "type": "String",
-        "example": "sideways"
-      }
-    }
-  },
   "syntaxErrorMissingParentheses": "Parênteses faltando após frog. Use \"frog()\" ao invés de \"frog\".",
-  "@syntaxErrorMissingParentheses": {
-    "description": "Erro quando parênteses estão faltando após frog"
-  },
   "solutionIncorrectFrogCount": "Número incorreto de sapos. Esperado {expected} sapos, mas encontrou {found}.",
-  "@solutionIncorrectFrogCount": {
-    "description": "Erro quando número errado de sapos",
-    "placeholders": {
-      "expected": {
-        "type": "int",
-        "example": "3"
-      },
-      "found": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "solutionMismatchedCount": "Número de sapos ({frogCount}) não corresponde ao número de vitórias-régias ({lilypadCount}).",
-  "@solutionMismatchedCount": {
-    "description": "Erro quando contagem de sapos e vitórias-régias não combinam",
-    "placeholders": {
-      "frogCount": {
-        "type": "int",
-        "example": "3"
-      },
-      "lilypadCount": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "solutionSuccess": "Excelente trabalho! Você completou este nível!",
-  "@solutionSuccess": {
-    "description": "Mensagem de sucesso quando nível é completado"
-  },
   "solutionIncorrectPlacement": "Não está certo ainda. Certifique-se de que cada sapo está na vitória-régia da cor correspondente.",
-  "@solutionIncorrectPlacement": {
-    "description": "Erro quando sapos não estão posicionados corretamente"
-  },
-  "solutionCodeError": "Houve um erro no seu código: {error}",
-  "@solutionCodeError": {
-    "description": "Mensagem de erro geral quando código tem problemas",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Sintaxe inválida"
-      }
-    }
-  }
+  "solutionCodeError": "Houve um erro no seu código: {error}"
 } 

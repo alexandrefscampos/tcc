@@ -6,7 +6,6 @@ class Level {
   final String instructions;
   final List<Position> initialPositions;
   final String preBuiltCode;
-  final String? explanation;
 
   final Widget? frogWidget;
   final Widget? lilypadWidget;
@@ -16,7 +15,6 @@ class Level {
     required this.instructions,
     required this.initialPositions,
     required this.preBuiltCode,
-    this.explanation,
     this.frogWidget,
     this.lilypadWidget,
   });

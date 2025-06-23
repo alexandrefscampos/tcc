@@ -15,7 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get levelSelectTitle => 'Flutter Flex Frog - Levels';
 
   @override
-  String levelNumber(int number) {
+  String levelNumber(Object number) {
     return 'Level $number';
   }
 
@@ -23,7 +23,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get congratulations => 'Congratulations! 🎉';
 
   @override
-  String levelCompleted(int number) {
+  String levelCompleted(Object number) {
     return 'You\'ve completed level $number!';
   }
 
@@ -58,81 +58,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get level1Instructions =>
-      'Center the frogs vertically using Column and mainAxisAlignment.';
-
-  @override
-  String get level1Explanation =>
-      'Column widgets arrange their children vertically. mainAxisAlignment controls the vertical positioning.';
+      'Welcome to Flutter Flex Frog! Your goal is to guide the frog to the lilypad on the right.\n\nUse the mainAxisAlignment property to position items horizontally in a Row. Try changing mainAxisAlignment from start to end.';
 
   @override
   String get level2Instructions =>
-      'Center the frogs horizontally using Row and mainAxisAlignment.';
-
-  @override
-  String get level2Explanation =>
-      'Row widgets arrange their children horizontally. mainAxisAlignment controls the horizontal positioning.';
+      'Help the frogs reach their lilypads in the center.\n\nThe mainAxisAlignment property accepts these values:\n• start - aligns to the left\n• end - aligns to the right\n• center - centers the items';
 
   @override
   String get level3Instructions =>
-      'Distribute the frogs evenly using Row and mainAxisAlignment.';
-
-  @override
-  String get level3Explanation =>
-      'Use spaceEvenly to distribute widgets with equal spacing around them.';
+      'Spread the frogs out evenly across the pond.\n\nUse mainAxisAlignment: spaceEvenly to distribute items with equal spacing around them, similar to CSS justify-content: space-evenly.';
 
   @override
   String get level4Instructions =>
-      'Arrange the frogs horizontally with equal spacing using Row and mainAxisAlignment.';
-
-  @override
-  String get level4Explanation =>
-      'Row widgets arrange their children horizontally. Use spaceBetween to distribute them with equal spacing.';
+      'Position the frogs with space only between them.\n\nUse mainAxisAlignment: spaceBetween to place equal spacing between items, but not at the edges.';
 
   @override
   String get level5Instructions =>
-      'Position the frogs at the bottom using Column and mainAxisAlignment.';
-
-  @override
-  String get level5Explanation =>
-      'Use mainAxisAlignment: MainAxisAlignment.end to position items at the bottom of a Column.';
+      'Move the frogs to the bottom of the pond.\n\nColumn arranges children vertically. Use mainAxisAlignment: end to position items at the bottom of a Column.';
 
   @override
   String get level6Instructions =>
-      'Center the frogs both horizontally and vertically using nested Column and Row.';
-
-  @override
-  String get level6Explanation =>
-      'You can nest Row inside Column to control both horizontal and vertical alignment.';
+      'Center the frog both horizontally and vertically.\n\nNest a Row inside a Column to control both axes:\n• Column\'s mainAxisAlignment controls vertical positioning\n• Row\'s mainAxisAlignment controls horizontal positioning';
 
   @override
   String get level7Instructions =>
-      'Position the frogs at the bottom with equal spacing using nested widgets.';
+      'Position the frogs at the bottom with equal spacing between them.\n\nCombine Column and Row:\n• Use Column with mainAxisAlignment: end for bottom positioning\n• Use Row with mainAxisAlignment: spaceBetween for horizontal spacing';
 
   @override
-  String get level7Explanation =>
-      'Combine Column and Row with different alignment properties to achieve complex layouts.';
-
-  @override
-  String get level8Instructions => 'Arrange the frogs vertically using Column.';
-
-  @override
-  String get level8Explanation =>
-      'Column widgets arrange their children vertically from top to bottom.';
+  String get level8Instructions =>
+      'Stack the frogs vertically.\n\nColumn arranges children from top to bottom, like CSS flex-direction: column. This is the vertical equivalent of Row.';
 
   @override
   String get level9Instructions =>
-      'Position the frogs at the bottom using Flex and direction properties.';
-
-  @override
-  String get level9Explanation =>
-      'Flex widgets can be configured to work like Row or Column using the direction property.';
+      'Use Flex to position the frogs at the bottom.\n\nFlex is the base widget for both Row and Column:\n• direction: horizontal creates a Row\n• direction: vertical creates a Column\n• Use mainAxisAlignment: end to position at the bottom';
 
   @override
   String get syntaxErrorInvalidWidget =>
       'Invalid syntax: Please use a valid Flutter widget format like \"row(...)\" or \"column(...)\" or \"flex(...)\"';
 
   @override
-  String syntaxErrorUnknownWidget(String widgetName) {
+  String syntaxErrorUnknownWidget(Object widgetName) {
     return 'Invalid widget: \"$widgetName\" is not a valid Flutter widget. Use \"row\" or \"column\" or \"flex\".';
   }
 
@@ -169,12 +134,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'Missing colon after property name. Example: \"direction: horizontal\"';
 
   @override
-  String syntaxErrorInvalidAlignment(String value) {
+  String syntaxErrorInvalidAlignment(Object value) {
     return 'Invalid alignment value \"$value\". Use: start, end, center, spaceBetween, spaceAround, or spaceEvenly.';
   }
 
   @override
-  String syntaxErrorInvalidDirection(String value) {
+  String syntaxErrorInvalidDirection(Object value) {
     return 'Invalid direction value \"$value\". Use: horizontal or vertical.';
   }
 
@@ -183,12 +148,12 @@ class AppLocalizationsEn extends AppLocalizations {
       'Missing parentheses after frog. Use \"frog()\" instead of \"frog\".';
 
   @override
-  String solutionIncorrectFrogCount(int expected, int found) {
+  String solutionIncorrectFrogCount(Object expected, Object found) {
     return 'Incorrect number of frogs. Expected $expected frogs, but found $found.';
   }
 
   @override
-  String solutionMismatchedCount(int frogCount, int lilypadCount) {
+  String solutionMismatchedCount(Object frogCount, Object lilypadCount) {
     return 'Number of frogs ($frogCount) does not match number of lilypads ($lilypadCount).';
   }
 
@@ -200,7 +165,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Not quite right. Make sure each frog is on its matching colored lilypad.';
 
   @override
-  String solutionCodeError(String error) {
+  String solutionCodeError(Object error) {
     return 'There was an error in your code: $error';
   }
 }

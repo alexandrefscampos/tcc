@@ -1,269 +1,44 @@
 {
   "@@locale": "en",
   "appTitle": "Flutter Flex Frog",
-  "@appTitle": {
-    "description": "Title of the application"
-  },
   "levelSelectTitle": "Flutter Flex Frog - Levels",
-  "@levelSelectTitle": {
-    "description": "Title for level selection screen"
-  },
   "levelNumber": "Level {number}",
-  "@levelNumber": {
-    "description": "Display level number",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "congratulations": "Congratulations! 🎉",
-  "@congratulations": {
-    "description": "Success message when completing a level"
-  },
   "levelCompleted": "You've completed level {number}!",
-  "@levelCompleted": {
-    "description": "Message when completing a level",
-    "placeholders": {
-      "number": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "nextLevel": "Next Level",
-  "@nextLevel": {
-    "description": "Button to go to next level"
-  },
   "gameComplete": "🏆 Game Complete! 🏆",
-  "@gameComplete": {
-    "description": "Title when all levels are completed"
-  },
   "gameCompleteMessage": "Congratulations! You've mastered Flutter layouts!",
-  "@gameCompleteMessage": {
-    "description": "Message when completing the entire game"
-  },
   "playAgain": "Play Again",
-  "@playAgain": {
-    "description": "Button to restart the game"
-  },
   "resetTooltip": "Reset to original code",
-  "@resetTooltip": {
-    "description": "Tooltip for reset button"
-  },
   "formatTooltip": "Format code",
-  "@formatTooltip": {
-    "description": "Tooltip for format code button"
-  },
   "codeHint": "Enter your Flutter layout code here...",
-  "@codeHint": {
-    "description": "Hint text for code input field"
-  },
   "checkingSolution": "Checking solution...",
-  "@checkingSolution": {
-    "description": "Message while checking solution"
-  },
   "codeFormattingFailed": "Code formatting failed - please check your syntax",
-  "@codeFormattingFailed": {
-    "description": "Error message when code formatting fails"
-  },
-  
-  "level1Instructions": "Center the frogs vertically using Column and mainAxisAlignment.",
-  "@level1Instructions": {
-    "description": "Instructions for level 1"
-  },
-  "level1Explanation": "Column widgets arrange their children vertically. mainAxisAlignment controls the vertical positioning.",
-  "@level1Explanation": {
-    "description": "Explanation for level 1"
-  },
-  
-  "level2Instructions": "Center the frogs horizontally using Row and mainAxisAlignment.",
-  "@level2Instructions": {
-    "description": "Instructions for level 2"
-  },
-  "level2Explanation": "Row widgets arrange their children horizontally. mainAxisAlignment controls the horizontal positioning.",
-  "@level2Explanation": {
-    "description": "Explanation for level 2"
-  },
-  
-  "level3Instructions": "Distribute the frogs evenly using Row and mainAxisAlignment.",
-  "@level3Instructions": {
-    "description": "Instructions for level 3"
-  },
-  "level3Explanation": "Use spaceEvenly to distribute widgets with equal spacing around them.",
-  "@level3Explanation": {
-    "description": "Explanation for level 3"
-  },
-  
-  "level4Instructions": "Arrange the frogs horizontally with equal spacing using Row and mainAxisAlignment.",
-  "@level4Instructions": {
-    "description": "Instructions for level 4"
-  },
-  "level4Explanation": "Row widgets arrange their children horizontally. Use spaceBetween to distribute them with equal spacing.",
-  "@level4Explanation": {
-    "description": "Explanation for level 4"
-  },
-  
-  "level5Instructions": "Position the frogs at the bottom using Column and mainAxisAlignment.",
-  "@level5Instructions": {
-    "description": "Instructions for level 5"
-  },
-  "level5Explanation": "Use mainAxisAlignment: MainAxisAlignment.end to position items at the bottom of a Column.",
-  "@level5Explanation": {
-    "description": "Explanation for level 5"
-  },
-  
-  "level6Instructions": "Center the frogs both horizontally and vertically using nested Column and Row.",
-  "@level6Instructions": {
-    "description": "Instructions for level 6"
-  },
-  "level6Explanation": "You can nest Row inside Column to control both horizontal and vertical alignment.",
-  "@level6Explanation": {
-    "description": "Explanation for level 6"
-  },
-  
-  "level7Instructions": "Position the frogs at the bottom with equal spacing using nested widgets.",
-  "@level7Instructions": {
-    "description": "Instructions for level 7"
-  },
-  "level7Explanation": "Combine Column and Row with different alignment properties to achieve complex layouts.",
-  "@level7Explanation": {
-    "description": "Explanation for level 7"
-  },
-  
-  "level8Instructions": "Arrange the frogs vertically using Column.",
-  "@level8Instructions": {
-    "description": "Instructions for level 8"
-  },
-  "level8Explanation": "Column widgets arrange their children vertically from top to bottom.",
-  "@level8Explanation": {
-    "description": "Explanation for level 8"
-  },
-  
-  "level9Instructions": "Position the frogs at the bottom using Flex and direction properties.",
-  "@level9Instructions": {
-    "description": "Instructions for level 9"
-  },
-  "level9Explanation": "Flex widgets can be configured to work like Row or Column using the direction property.",
-  "@level9Explanation": {
-    "description": "Explanation for level 9"
-  },
-
+  "level1Instructions": "Welcome to Flutter Flex Frog! Your goal is to guide the frog to the lilypad on the right.\n\nUse the mainAxisAlignment property to position items horizontally in a Row. Try changing mainAxisAlignment from start to end.",
+  "level2Instructions": "Help the frogs reach their lilypads in the center.\n\nThe mainAxisAlignment property accepts these values:\n• start - aligns to the left\n• end - aligns to the right\n• center - centers the items",
+  "level3Instructions": "Help all three frogs find their lilypads just by using mainAxisAlignment. This time, the lilypads have lots of space all around them.\n\nIf you find yourself forgetting the possible values for mainAxisAlignment, remember: start, end, center, spaceBetween, spaceAround, spaceEvenly.",
+  "level4Instructions": "Now the lilypads on the edges have drifted to the shore, increasing the space between them. Use mainAxisAlignment. This time, the lilypads have equal spacing between them.\n\nTry mainAxisAlignment: spaceBetween to place equal spacing between items, but not at the edges.",
+  "level5Instructions": "Move the frogs to the bottom of the pond.\n\nColumn arranges children vertically. Use mainAxisAlignment: end to position items at the bottom of a Column.",
+  "level6Instructions": "Center the frog both horizontally and vertically.\n\nNest a Row inside a Column to control both axes:\n• Column's mainAxisAlignment controls vertical positioning\n• Row's mainAxisAlignment controls horizontal positioning",
+  "level7Instructions": "Position the frogs at the bottom with equal spacing between them.\n\nCombine Column and Row:\n• Use Column with mainAxisAlignment: end for bottom positioning\n• Use Row with mainAxisAlignment: spaceBetween for horizontal spacing",
+  "level8Instructions": "Stack the frogs vertically.\n\nColumn arranges children from top to bottom. This is the vertical equivalent of Row.",
+  "level9Instructions": "Use Flex to position the frogs at the bottom.\n\nFlex is the base widget for both Row and Column:\n• direction: horizontal creates a Row\n• direction: vertical creates a Column\n• Use mainAxisAlignment: end to position at the bottom",
   "syntaxErrorInvalidWidget": "Invalid syntax: Please use a valid Flutter widget format like \"row(...)\" or \"column(...)\" or \"flex(...)\"",
-  "@syntaxErrorInvalidWidget": {
-    "description": "Error when no valid widget format is found"
-  },
   "syntaxErrorUnknownWidget": "Invalid widget: \"{widgetName}\" is not a valid Flutter widget. Use \"row\" or \"column\" or \"flex\".",
-  "@syntaxErrorUnknownWidget": {
-    "description": "Error when unknown widget is used",
-    "placeholders": {
-      "widgetName": {
-        "type": "String",
-        "example": "div"
-      }
-    }
-  },
   "syntaxErrorMismatchedParentheses": "Syntax error: Mismatched parentheses in your code.",
-  "@syntaxErrorMismatchedParentheses": {
-    "description": "Error when parentheses don't match"
-  },
   "syntaxErrorMissingBrackets": "Syntax error: Children must be enclosed in square brackets [...].",
-  "@syntaxErrorMissingBrackets": {
-    "description": "Error when square brackets are missing for children"
-  },
   "syntaxErrorMissingCommaAfterMainAxis": "Missing comma after mainAxisAlignment. Example: \"mainAxisAlignment: start,\"",
-  "@syntaxErrorMissingCommaAfterMainAxis": {
-    "description": "Error when comma is missing after mainAxisAlignment"
-  },
   "syntaxErrorMissingCommaAfterCrossAxis": "Missing comma after crossAxisAlignment. Example: \"crossAxisAlignment: start,\"",
-  "@syntaxErrorMissingCommaAfterCrossAxis": {
-    "description": "Error when comma is missing after crossAxisAlignment"
-  },
   "syntaxErrorMissingCommaAfterDirection": "Missing comma after direction. Example: \"direction: horizontal,\"",
-  "@syntaxErrorMissingCommaAfterDirection": {
-    "description": "Error when comma is missing after direction"
-  },
   "syntaxErrorMissingCommaBetweenProperties": "Missing comma between properties. Each property should end with a comma.",
-  "@syntaxErrorMissingCommaBetweenProperties": {
-    "description": "Error when comma is missing between properties"
-  },
   "syntaxErrorMissingCommaAfterChildren": "Missing comma after children array. Example: \"children: [frog()],\"",
-  "@syntaxErrorMissingCommaAfterChildren": {
-    "description": "Error when comma is missing after children array"
-  },
   "syntaxErrorMissingColon": "Missing colon after property name. Example: \"direction: horizontal\"",
-  "@syntaxErrorMissingColon": {
-    "description": "Error when colon is missing after property name"
-  },
   "syntaxErrorInvalidAlignment": "Invalid alignment value \"{value}\". Use: start, end, center, spaceBetween, spaceAround, or spaceEvenly.",
-  "@syntaxErrorInvalidAlignment": {
-    "description": "Error when invalid alignment value is used",
-    "placeholders": {
-      "value": {
-        "type": "String",
-        "example": "middle"
-      }
-    }
-  },
   "syntaxErrorInvalidDirection": "Invalid direction value \"{value}\". Use: horizontal or vertical.",
-  "@syntaxErrorInvalidDirection": {
-    "description": "Error when invalid direction value is used",
-    "placeholders": {
-      "value": {
-        "type": "String",
-        "example": "sideways"
-      }
-    }
-  },
   "syntaxErrorMissingParentheses": "Missing parentheses after frog. Use \"frog()\" instead of \"frog\".",
-  "@syntaxErrorMissingParentheses": {
-    "description": "Error when parentheses are missing after frog"
-  },
   "solutionIncorrectFrogCount": "Incorrect number of frogs. Expected {expected} frogs, but found {found}.",
-  "@solutionIncorrectFrogCount": {
-    "description": "Error when wrong number of frogs",
-    "placeholders": {
-      "expected": {
-        "type": "int",
-        "example": "3"
-      },
-      "found": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "solutionMismatchedCount": "Number of frogs ({frogCount}) does not match number of lilypads ({lilypadCount}).",
-  "@solutionMismatchedCount": {
-    "description": "Error when frog and lilypad counts don't match",
-    "placeholders": {
-      "frogCount": {
-        "type": "int",
-        "example": "3"
-      },
-      "lilypadCount": {
-        "type": "int",
-        "example": "2"
-      }
-    }
-  },
   "solutionSuccess": "Great job! You've completed this level!",
-  "@solutionSuccess": {
-    "description": "Success message when level is completed"
-  },
   "solutionIncorrectPlacement": "Not quite right. Make sure each frog is on its matching colored lilypad.",
-  "@solutionIncorrectPlacement": {
-    "description": "Error when frogs are not correctly placed"
-  },
-  "solutionCodeError": "There was an error in your code: {error}",
-  "@solutionCodeError": {
-    "description": "General error message when code has issues",
-    "placeholders": {
-      "error": {
-        "type": "String",
-        "example": "Invalid syntax"
-      }
-    }
-  }
+  "solutionCodeError": "There was an error in your code: {error}"
 } 
