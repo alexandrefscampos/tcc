@@ -10,6 +10,7 @@ import '../l10n/app_localizations.dart';
 class CodeInputArea extends StatefulWidget {
   final TextEditingController controller;
   final Function(String) onCodeSubmitted;
+  final Function(String)? onTextChanged;
   final String? feedbackMessage;
   final bool isCorrect;
   final Level currentLevel;
@@ -19,6 +20,7 @@ class CodeInputArea extends StatefulWidget {
     required this.controller,
     required this.onCodeSubmitted,
     required this.currentLevel,
+    this.onTextChanged,
     this.feedbackMessage,
     this.isCorrect = false,
   });
@@ -32,6 +34,9 @@ class _CodeInputAreaState extends State<CodeInputArea> {
   Timer? _debounceTimer;
 
   void _onTextChanged(String value) {
+    // Notify parent widget about text changes for undo/redo
+    widget.onTextChanged?.call(value);
+
     // Cancel the previous timer
     _debounceTimer?.cancel();
 

@@ -66,11 +66,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get level3Instructions =>
-      'Espalhe os sapos uniformemente pelo lago.\n\nUse mainAxisAlignment: spaceEvenly para distribuir itens com espaçamento igual ao redor deles, similar ao CSS justify-content: space-evenly.';
+      'Ajude todos os três sapos a encontrarem suas vitórias-régias usando apenas mainAxisAlignment. Desta vez, as vitórias-régias têm muito espaço ao redor delas.\n\nSe você esquecer os valores possíveis para mainAxisAlignment, lembre-se: start, end, center, spaceBetween, spaceAround, spaceEvenly.';
 
   @override
   String get level4Instructions =>
-      'Posicione os sapos com espaço apenas entre eles.\n\nUse mainAxisAlignment: spaceBetween para colocar espaçamento igual entre itens, mas não nas bordas.';
+      'Agora as vitórias-régias nas bordas se afastaram para a margem, aumentando o espaço entre elas. Use mainAxisAlignment. Desta vez, as vitórias-régias têm espaçamento igual entre elas.\n\nTente mainAxisAlignment: spaceBetween para colocar espaçamento igual entre itens, mas não nas bordas.';
 
   @override
   String get level5Instructions =>
@@ -86,7 +86,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get level8Instructions =>
-      'Empilhe os sapos verticalmente.\n\nColumn organiza filhos de cima para baixo, como CSS flex-direction: column. Este é o equivalente vertical de Row.';
+      'Empilhe os sapos verticalmente.\n\nColumn organiza filhos de cima para baixo. Este é o equivalente vertical de Row.';
 
   @override
   String get level9Instructions =>

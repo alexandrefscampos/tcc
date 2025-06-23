@@ -66,11 +66,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get level3Instructions =>
-      'Spread the frogs out evenly across the pond.\n\nUse mainAxisAlignment: spaceEvenly to distribute items with equal spacing around them, similar to CSS justify-content: space-evenly.';
+      'Help all three frogs find their lilypads just by using mainAxisAlignment. This time, the lilypads have lots of space all around them.\n\nIf you find yourself forgetting the possible values for mainAxisAlignment, remember: start, end, center, spaceBetween, spaceAround, spaceEvenly.';
 
   @override
   String get level4Instructions =>
-      'Position the frogs with space only between them.\n\nUse mainAxisAlignment: spaceBetween to place equal spacing between items, but not at the edges.';
+      'Now the lilypads on the edges have drifted to the shore, increasing the space between them. Use mainAxisAlignment. This time, the lilypads have equal spacing between them.\n\nTry mainAxisAlignment: spaceBetween to place equal spacing between items, but not at the edges.';
 
   @override
   String get level5Instructions =>
@@ -86,7 +86,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get level8Instructions =>
-      'Stack the frogs vertically.\n\nColumn arranges children from top to bottom, like CSS flex-direction: column. This is the vertical equivalent of Row.';
+      'Stack the frogs vertically.\n\nColumn arranges children from top to bottom. This is the vertical equivalent of Row.';
 
   @override
   String get level9Instructions =>

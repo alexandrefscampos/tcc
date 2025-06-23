@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tcc2/data/levels.dart';
 import 'package:tcc2/models/level.dart';
+import 'package:tcc2/utils/command_manager.dart';
 import 'package:tcc2/utils/solution_checker.dart';
 import 'package:tcc2/widgets/code_input_area.dart';
 import 'package:tcc2/widgets/game_area.dart';
@@ -22,18 +23,22 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   late Level currentLevel;
   late TextEditingController codeController;
+  late CommandManager commandManager;
   String? feedbackMessage;
   bool isCorrect = false;
   bool _isLoadingLevel = false;
   bool _isShowingDialog = false;
   late List<Level> levels;
+  String _lastCodeText = '';
 
   @override
   void initState() {
     super.initState();
     currentLevel = widget.initialLevel;
     codeController = TextEditingController();
+    commandManager = CommandManager();
     codeController.text = currentLevel.preBuiltCode;
+    _lastCodeText = currentLevel.preBuiltCode;
   }
 
   @override
@@ -127,6 +132,22 @@ class _GameScreenState extends State<GameScreen> {
     _loadLevel(levels.first);
   }
 
+  void _handleTextChange(String newText) {
+    if (newText != _lastCodeText) {
+      final command = TextEditCommand(
+        previousText: _lastCodeText,
+        newText: newText,
+        onTextChanged: (text) {
+          codeController.text = text;
+          _lastCodeText = text;
+          _checkSolution(text);
+        },
+      );
+      commandManager.executeCommand(command);
+      _lastCodeText = newText;
+    }
+  }
+
   void _loadLevel(Level newLevel) {
     setState(() {
       _isLoadingLevel = true;
@@ -139,6 +160,10 @@ class _GameScreenState extends State<GameScreen> {
 
     codeController.dispose();
     codeController = tempController;
+
+    // Clear command history when loading a new level
+    commandManager.clear();
+    _lastCodeText = newLevel.preBuiltCode;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       setState(() {
@@ -173,36 +198,60 @@ class _GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.levelNumber(currentLevel.number)),
-        backgroundColor: Colors.blue,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
+    return UndoRedoShortcuts(
+      commandManager: commandManager,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(l10n.levelNumber(currentLevel.number)),
+          backgroundColor: Colors.blue,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context),
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.undo),
+              onPressed: commandManager.canUndo()
+                  ? () {
+                      commandManager.undo();
+                    }
+                  : null,
+              tooltip: 'Undo (Ctrl+Z)',
+            ),
+            IconButton(
+              icon: const Icon(Icons.redo),
+              onPressed: commandManager.canRedo()
+                  ? () {
+                      commandManager.redo();
+                    }
+                  : null,
+              tooltip: 'Redo (Ctrl+Y)',
+            ),
+          ],
         ),
-      ),
-      body: Row(
-        children: [
-          // Game Area
-          Expanded(
-            flex: 2,
-            child: GameArea(
-              level: currentLevel,
-              userInput: codeController.text,
+        body: Row(
+          children: [
+            // Game Area
+            Expanded(
+              flex: 2,
+              child: GameArea(
+                level: currentLevel,
+                userInput: codeController.text,
+              ),
             ),
-          ),
-          // Code Input Area
-          Expanded(
-            child: CodeInputArea(
-              controller: codeController,
-              onCodeSubmitted: _checkSolution,
-              currentLevel: currentLevel,
-              feedbackMessage: feedbackMessage,
-              isCorrect: isCorrect,
+            // Code Input Area
+            Expanded(
+              child: CodeInputArea(
+                controller: codeController,
+                onCodeSubmitted: _checkSolution,
+                onTextChanged: _handleTextChange,
+                currentLevel: currentLevel,
+                feedbackMessage: feedbackMessage,
+                isCorrect: isCorrect,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
