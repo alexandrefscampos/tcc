@@ -287,7 +287,7 @@ abstract class AppLocalizations {
   /// No description provided for @syntaxErrorMissingCommaAfterChildren.
   ///
   /// In en, this message translates to:
-  /// **'Missing comma after children array. Example: \"children: [frog()],\"'**
+  /// **'Missing comma after children array. Example: \"children: [bird()],\"'**
   String get syntaxErrorMissingCommaAfterChildren;
 
   /// No description provided for @syntaxErrorMissingColon.
@@ -311,7 +311,7 @@ abstract class AppLocalizations {
   /// No description provided for @syntaxErrorMissingParentheses.
   ///
   /// In en, this message translates to:
-  /// **'Missing parentheses after frog. Use \"frog()\" instead of \"frog\".'**
+  /// **'Missing parentheses after bird. Use \"bird()\" instead of \"bird\".'**
   String get syntaxErrorMissingParentheses;
 
   /// No description provided for @solutionIncorrectFrogCount.

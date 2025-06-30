@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Colors actually used in game_components.dart
-  static const Color frogGreen = Colors.green;
-  static const Color frogYellow = Colors.yellow;
-  static const Color frogRed = Colors.red;
+  // Flutter-themed bird colors
+  static const Color birdBlue = Color(0xFF0175C2); // Flutter blue
+  static const Color birdDartBlue = Color(0xFF13B9FD); // Dart blue
+  static const Color birdLightBlue = Color(0xFF54C5F8); // Light blue
 
   // Colors used in code_input_area.dart
   static final Color codeBackground = Colors.grey[900]!;
@@ -19,20 +19,21 @@ class AppColors {
   static const Color successBorder = Colors.green;
 
   // Colors used in level_select_screen.dart
-  static final Color levelSelectGradientStart = Colors.lightBlue[200]!;
-  static final Color levelSelectGradientEnd = Colors.lightBlue[800]!;
+  static const Color levelSelectGradientStart =
+      Color(0xFF54C5F8); // Flutter light blue
+  static const Color levelSelectGradientEnd = Color(0xFF0175C2); // Flutter blue
   static const Color levelButtonBorder = Colors.white;
   static const Color levelButtonText = Colors.white;
   static const Color levelButtonIcon = Colors.white;
   static const Color levelButtonUnlocked = Colors.grey;
   static const Color levelButtonCompleted = Colors.green;
-  static const Color levelButtonAvailable = Colors.blue;
+  static const Color levelButtonAvailable = Color(0xFF0175C2); // Flutter blue
 
-  // Colors used in game_area.dart
-  static final Color waterBackground = Colors.lightBlue[100]!;
+  // Colors used in game_area.dart - sky theme for birds
+  static const Color skyBackground = Color(0xFFE3F2FD); // Light sky blue
 
   // Colors used in game_screen.dart
-  static const Color gameScreenAppBar = Colors.blue;
+  static const Color gameScreenAppBar = Color(0xFF0175C2); // Flutter blue
 
   // Colors used in code_parser.dart
   static const Color parserError = Colors.red;

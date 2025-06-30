@@ -127,7 +127,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get syntaxErrorMissingCommaAfterChildren =>
-      'Vírgula faltando após array de children. Exemplo: \"children: [frog()],\"';
+      'Vírgula faltando após array de children. Exemplo: \"children: [bird()],\"';
 
   @override
   String get syntaxErrorMissingColon =>
@@ -145,7 +145,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get syntaxErrorMissingParentheses =>
-      'Parênteses faltando após frog. Use \"frog()\" ao invés de \"frog\".';
+      'Parênteses faltando após bird. Use \"bird()\" ao invés de \"bird\".';
 
   @override
   String solutionIncorrectFrogCount(Object expected, Object found) {

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tcc2/models/check_result.dart';
 import 'package:tcc2/models/level.dart';
+import 'package:tcc2/models/position.dart';
 import 'package:tcc2/utils/position_calculator.dart';
 import 'package:tcc2/utils/syntax_validator.dart';
 
@@ -12,8 +13,8 @@ class SolutionChecker {
   static Future<CheckResult> checkSolution(
     Level level,
     String userCode,
-    List<GlobalKey> frogKeys,
-    List<GlobalKey> lilypadKeys,
+    List<GlobalKey> birdKeys,
+    List<GlobalKey> nestKeys,
     AppLocalizations l10n,
   ) async {
     final syntaxValidation = SyntaxValidator.validateCodeSyntax(userCode, l10n);
@@ -27,32 +28,32 @@ class SolutionChecker {
     await Future.delayed(const Duration(milliseconds: 500));
 
     try {
-      List<Position> frogPositions =
-          PositionCalculator.calculateActualPositions(frogKeys);
-      List<Position> lilypadPositions =
-          PositionCalculator.calculateActualPositions(lilypadKeys);
+      List<Position> birdPositions =
+          PositionCalculator.calculateActualPositions(birdKeys);
+      List<Position> nestPositions =
+          PositionCalculator.calculateActualPositions(nestKeys);
 
-      final expectedFrogCount = level.initialPositions.length;
-      if (frogPositions.length != expectedFrogCount) {
+      final expectedBirdCount = level.initialPositions.length;
+      if (birdPositions.length != expectedBirdCount) {
         return CheckResult(
           isCorrect: false,
           message: l10n.solutionIncorrectFrogCount(
-              expectedFrogCount, frogPositions.length),
+              expectedBirdCount, birdPositions.length),
         );
       }
 
-      if (frogPositions.length != lilypadPositions.length) {
+      if (birdPositions.length != nestPositions.length) {
         return CheckResult(
           isCorrect: false,
           message: l10n.solutionMismatchedCount(
-              frogPositions.length, lilypadPositions.length),
+              birdPositions.length, nestPositions.length),
         );
       }
 
-      bool allFrogsCorrectlyPlaced = _checkFrogsOnMatchingLilypadsOneToOne(
-          frogPositions, lilypadPositions);
+      bool allBirdsCorrectlyPlaced =
+          _checkBirdsOnMatchingNestsOneToOne(birdPositions, nestPositions);
 
-      if (allFrogsCorrectlyPlaced) {
+      if (allBirdsCorrectlyPlaced) {
         return CheckResult(
           isCorrect: true,
           message: l10n.solutionSuccess,
@@ -71,29 +72,29 @@ class SolutionChecker {
     }
   }
 
-  static bool _checkFrogsOnMatchingLilypadsOneToOne(
-    List<Position> frogPositions,
-    List<Position> lilypadPositions,
+  static bool _checkBirdsOnMatchingNestsOneToOne(
+    List<Position> birdPositions,
+    List<Position> nestPositions,
   ) {
-    if (frogPositions.length != lilypadPositions.length) {
+    if (birdPositions.length != nestPositions.length) {
       return false;
     }
 
-    Set<int> matchedLilypadIndices = {};
+    Set<int> matchedNestIndices = {};
 
-    for (final frogPosition in frogPositions) {
+    for (final birdPosition in birdPositions) {
       bool foundMatch = false;
 
-      for (int i = 0; i < lilypadPositions.length; i++) {
-        final lilypadPosition = lilypadPositions[i];
+      for (int i = 0; i < nestPositions.length; i++) {
+        final nestPosition = nestPositions[i];
 
-        if (matchedLilypadIndices.contains(i)) {
+        if (matchedNestIndices.contains(i)) {
           continue;
         }
 
-        if (frogPosition.color == lilypadPosition.color &&
-            PositionCalculator.isPositionMatch(frogPosition, lilypadPosition)) {
-          matchedLilypadIndices.add(i);
+        if (birdPosition.color == nestPosition.color &&
+            PositionCalculator.isPositionMatch(birdPosition, nestPosition)) {
+          matchedNestIndices.add(i);
           foundMatch = true;
           break;
         }
@@ -104,6 +105,6 @@ class SolutionChecker {
       }
     }
 
-    return matchedLilypadIndices.length == frogPositions.length;
+    return matchedNestIndices.length == birdPositions.length;
   }
 }

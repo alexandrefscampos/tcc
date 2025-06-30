@@ -7,15 +7,15 @@ class Level {
   final List<Position> initialPositions;
   final String preBuiltCode;
 
-  final Widget? frogWidget;
-  final Widget? lilypadWidget;
+  final Widget? birdWidget;
+  final Widget? nestWidget;
 
   Level({
     required this.number,
     required this.instructions,
     required this.initialPositions,
     required this.preBuiltCode,
-    this.frogWidget,
-    this.lilypadWidget,
+    this.birdWidget,
+    this.nestWidget,
   });
 }

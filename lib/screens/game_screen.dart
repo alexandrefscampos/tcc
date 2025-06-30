@@ -76,8 +76,8 @@ class _GameScreenState extends State<GameScreen> {
     final result = await SolutionChecker.checkSolution(
       currentLevel,
       code,
-      GameArea.frogKeys,
-      GameArea.lilypadKeys,
+      GameArea.birdKeys,
+      GameArea.nestKeys,
       l10n,
     );
 

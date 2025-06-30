@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tcc2/enums/frog_color.dart';
+import 'package:tcc2/enums/bird_color.dart';
 import 'package:tcc2/theme/app_text_styles.dart';
 import 'package:tcc2/utils/syntax_validator.dart';
 import 'package:tcc2/widgets/game_components.dart';
@@ -9,7 +9,7 @@ import '../l10n/app_localizations.dart';
 class CodeParser {
   static Widget parseCode(
     String code,
-    List<Widget> frogs,
+    List<Widget> birds,
     AppLocalizations l10n,
   ) {
     // First validate syntax using the same validation as SolutionChecker
@@ -32,7 +32,7 @@ class CodeParser {
 
     try {
       // Parse the outermost widget
-      return _parseWidget(code, frogs);
+      return _parseWidget(code, birds);
     } catch (e) {
       // Return a centered error message if parsing fails
       return Center(
@@ -44,7 +44,7 @@ class CodeParser {
     }
   }
 
-  static Widget _parseWidget(String code, List<Widget> frogs) {
+  static Widget _parseWidget(String code, List<Widget> birds) {
     // Handle empty code
     if (code.trim().isEmpty) {
       return const SizedBox.shrink(); // Return an empty widget
@@ -59,13 +59,13 @@ class CodeParser {
 
     // Parse properties and children
     final properties = _parseProperties(content);
-    final children = _parseChildren(properties.remove('children') ?? '', frogs);
+    final children = _parseChildren(properties.remove('children') ?? '', birds);
 
     // Handle child property safely
     final childProperty = properties.remove('child') ?? '';
     final child = childProperty.trim().isEmpty
         ? const SizedBox.shrink()
-        : _parseWidget(childProperty, frogs);
+        : _parseWidget(childProperty, birds);
 
     // Create the appropriate widget
     switch (widgetName) {
@@ -117,8 +117,8 @@ class CodeParser {
         );
       case 'center':
         return Center(child: child);
-      case 'frog':
-        return const Frog(color: FrogColor.green);
+      case 'bird':
+        return const Bird(color: BirdColor.green);
       default:
         throw 'Unknown widget: $widgetName';
     }
@@ -151,7 +151,7 @@ class CodeParser {
     return properties;
   }
 
-  static List<Widget> _parseChildren(String childrenStr, List<Widget> frogs) {
+  static List<Widget> _parseChildren(String childrenStr, List<Widget> birds) {
     if (childrenStr.isEmpty) return [];
 
     // Extract content between square brackets
@@ -160,7 +160,7 @@ class CodeParser {
 
     final childrenContent = bracketMatch.group(1)!;
     final children = <Widget>[];
-    int frogIndex = 0;
+    int birdIndex = 0;
 
     // Split by commas, but respect nested brackets
     final childItems = _splitByTopLevelCommas(childrenContent);
@@ -169,15 +169,15 @@ class CodeParser {
       final trimmed = child.trim();
       if (trimmed.isEmpty) continue; // Skip empty items
 
-      if (trimmed.startsWith('frog')) {
-        if (frogIndex >= frogs.length) {
-          throw 'Too many frogs specified';
+      if (trimmed.startsWith('bird')) {
+        if (birdIndex >= birds.length) {
+          throw 'Too many birds specified';
         }
-        children.add(frogs[frogIndex++]);
+        children.add(birds[birdIndex++]);
       } else {
         // Recursively parse nested widgets, but only if not empty
         try {
-          children.add(_parseWidget(trimmed, frogs.sublist(frogIndex)));
+          children.add(_parseWidget(trimmed, birds.sublist(birdIndex)));
         } catch (e) {
           // If parsing fails, skip this child widget
           continue;

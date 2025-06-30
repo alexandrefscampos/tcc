@@ -127,7 +127,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get syntaxErrorMissingCommaAfterChildren =>
-      'Missing comma after children array. Example: \"children: [frog()],\"';
+      'Missing comma after children array. Example: \"children: [bird()],\"';
 
   @override
   String get syntaxErrorMissingColon =>
@@ -145,7 +145,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get syntaxErrorMissingParentheses =>
-      'Missing parentheses after frog. Use \"frog()\" instead of \"frog\".';
+      'Missing parentheses after bird. Use \"bird()\" instead of \"bird\".';
 
   @override
   String solutionIncorrectFrogCount(Object expected, Object found) {

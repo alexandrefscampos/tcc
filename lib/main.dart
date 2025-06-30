@@ -5,16 +5,16 @@ import 'package:tcc2/screens/level_select_screen.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
-  runApp(const FlexFrogGame());
+  runApp(const FlutterFlexBirds());
 }
 
-class FlexFrogGame extends StatelessWidget {
-  const FlexFrogGame({super.key});
+class FlutterFlexBirds extends StatelessWidget {
+  const FlutterFlexBirds({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Flex Frog',
+      title: 'Flutter Flex Birds',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,

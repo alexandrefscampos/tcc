@@ -9,8 +9,8 @@ import '../l10n/app_localizations.dart';
 class GameArea extends StatelessWidget {
   final Level level;
   final String userInput;
-  static final List<GlobalKey> lilypadKeys = [];
-  static final List<GlobalKey> frogKeys = [];
+  static final List<GlobalKey> nestKeys = [];
+  static final List<GlobalKey> birdKeys = [];
   const GameArea({
     super.key,
     required this.level,
@@ -22,20 +22,20 @@ class GameArea extends StatelessWidget {
     final screenSize = MediaQuery.sizeOf(context);
     final l10n = AppLocalizations.of(context)!;
 
-    lilypadKeys.clear(); // Clear previous keys
-    frogKeys.clear(); // Clear previous keys
+    nestKeys.clear(); // Clear previous keys
+    birdKeys.clear(); // Clear previous keys
 
-    final modifiedLilypadWidget = _addKeysToWidgets(level.lilypadWidget);
+    final modifiedNestWidget = _addKeysToWidgets(level.nestWidget);
     return Container(
       height: screenSize.height,
       decoration: BoxDecoration(
-        color: AppColors.waterBackground, // Water background
+        color: AppColors.skyBackground, // Sky background for birds
         borderRadius: BorderRadius.circular(12),
       ),
       child: Stack(
         children: [
-          if (modifiedLilypadWidget != null) ...[
-            modifiedLilypadWidget,
+          if (modifiedNestWidget != null) ...[
+            modifiedNestWidget,
           ],
 
           // User's layout container
@@ -46,8 +46,8 @@ class GameArea extends StatelessWidget {
                 level.initialPositions.length,
                 (index) {
                   final key = GlobalKey();
-                  frogKeys.add(key);
-                  return Frog(
+                  birdKeys.add(key);
+                  return Bird(
                     key: key,
                     color: level.initialPositions[index].color,
                   );
@@ -64,10 +64,10 @@ class GameArea extends StatelessWidget {
   Widget? _addKeysToWidgets(Widget? widget) {
     if (widget == null) return null;
 
-    if (widget is LilyPad) {
+    if (widget is Nest) {
       final key = GlobalKey();
-      lilypadKeys.add(key);
-      return LilyPad(
+      nestKeys.add(key);
+      return Nest(
         key: key,
         color: widget.color,
       );

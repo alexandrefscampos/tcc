@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tcc2/enums/frog_color.dart';
+import 'package:tcc2/enums/bird_color.dart';
 import 'package:tcc2/models/level.dart';
 import 'package:tcc2/models/position.dart';
 import 'package:tcc2/widgets/game_components.dart';
@@ -12,105 +12,105 @@ class Levels {
       Level(
         number: 1,
         instructions: '', // Will be set dynamically
-        frogWidget: const Row(children: [Frog(color: FrogColor.green)]),
-        lilypadWidget: const Row(
+        birdWidget: const Row(children: [Bird(color: BirdColor.green)]),
+        nestWidget: const Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [LilyPad(color: FrogColor.green)],
+          children: [Nest(color: BirdColor.green)],
         ),
         initialPositions: [
-          Position(x: 0, y: 0, color: FrogColor.green),
+          Position(x: 0, y: 0, color: BirdColor.green),
         ],
         preBuiltCode: '''row(
   mainAxisAlignment: start,
-  children: [frog()]
+  children: [bird()]
 )''',
       ),
       Level(
         number: 2,
         instructions: '', // Will be set dynamically
-        frogWidget: const Row(children: [
-          Frog(color: FrogColor.green),
-          Frog(color: FrogColor.yellow)
+        birdWidget: const Row(children: [
+          Bird(color: BirdColor.green),
+          Bird(color: BirdColor.yellow)
         ]),
-        lilypadWidget: const Row(
+        nestWidget: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LilyPad(color: FrogColor.green),
-            LilyPad(color: FrogColor.yellow)
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.yellow)
           ],
         ),
         initialPositions: [
-          Position(x: 0, y: 0, color: FrogColor.green),
-          Position(x: 0, y: 0, color: FrogColor.yellow),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.yellow),
         ],
         preBuiltCode: '''row(
     mainAxisAlignment: start,
-    children: [frog(), frog()]
+    children: [bird(), bird()]
   )''',
       ),
       Level(
         number: 3,
         instructions: '', // Will be set dynamically
-        frogWidget: const Row(children: [
-          Frog(color: FrogColor.green),
-          Frog(color: FrogColor.yellow),
-          Frog(color: FrogColor.red)
+        birdWidget: const Row(children: [
+          Bird(color: BirdColor.green),
+          Bird(color: BirdColor.yellow),
+          Bird(color: BirdColor.red)
         ]),
-        lilypadWidget: const Row(
+        nestWidget: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            LilyPad(color: FrogColor.green),
-            LilyPad(color: FrogColor.yellow),
-            LilyPad(color: FrogColor.red)
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.yellow),
+            Nest(color: BirdColor.red)
           ],
         ),
         initialPositions: [
-          Position(x: 0, y: 0, color: FrogColor.green),
-          Position(x: 0, y: 0, color: FrogColor.yellow),
-          Position(x: 0, y: 0, color: FrogColor.red),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.yellow),
+          Position(x: 0, y: 0, color: BirdColor.red),
         ],
         preBuiltCode: '''row(
     mainAxisAlignment: start,
-    children: [frog(), frog(), frog()]
+    children: [bird(), bird(), bird()]
   )''',
       ),
       Level(
         number: 4,
         instructions: '', // Will be set dynamically
         initialPositions: [
-          Position(x: 0, y: 0, color: FrogColor.green),
-          Position(x: 0, y: 0, color: FrogColor.yellow),
-          Position(x: 0, y: 0, color: FrogColor.red),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.yellow),
+          Position(x: 0, y: 0, color: BirdColor.red),
         ],
-        lilypadWidget: const Row(
+        nestWidget: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            LilyPad(color: FrogColor.green),
-            LilyPad(color: FrogColor.yellow),
-            LilyPad(color: FrogColor.red),
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.yellow),
+            Nest(color: BirdColor.red),
           ],
         ),
         preBuiltCode: '''row(
   mainAxisAlignment: start,
-  children: [frog(), frog(), frog()]
+  children: [bird(), bird(), bird()]
 )''',
       ),
       Level(
         number: 5,
         instructions: '', // Will be set dynamically
         initialPositions: [
-          Position(x: 0, y: 0, color: FrogColor.green),
-          Position(x: 0, y: 0, color: FrogColor.yellow),
-          Position(x: 0, y: 0, color: FrogColor.red),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.yellow),
+          Position(x: 0, y: 0, color: BirdColor.red),
         ],
-        lilypadWidget: const Column(
+        nestWidget: const Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Row(
               children: [
-                LilyPad(color: FrogColor.green),
-                LilyPad(color: FrogColor.yellow),
-                LilyPad(color: FrogColor.red),
+                Nest(color: BirdColor.green),
+                Nest(color: BirdColor.yellow),
+                Nest(color: BirdColor.red),
               ],
             ),
           ],
@@ -118,9 +118,9 @@ class Levels {
         preBuiltCode: '''row(
   crossAxisAlignment: start,
   children: [
-    frog(),
-    frog(),
-    frog(),
+    bird(),
+    bird(),
+    bird(),
   ]
 )''',
       ),
@@ -128,15 +128,15 @@ class Levels {
         number: 6,
         instructions: '', // Will be set dynamically
         initialPositions: [
-          Position(x: 0, y: 0, color: FrogColor.green),
+          Position(x: 0, y: 0, color: BirdColor.green),
         ],
-        lilypadWidget: const Column(
+        nestWidget: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                LilyPad(color: FrogColor.green),
+                Nest(color: BirdColor.green),
               ],
             ),
           ],
@@ -146,7 +146,7 @@ class Levels {
   children: [
     row(
       mainAxisAlignment: start,
-      children: [frog()]
+      children: [bird()]
     )
   ]
 )''',
@@ -155,19 +155,19 @@ class Levels {
         number: 7,
         instructions: '', // Will be set dynamically
         initialPositions: [
-          Position(x: 0, y: 0, color: FrogColor.green),
-          Position(x: 0, y: 0, color: FrogColor.yellow),
-          Position(x: 0, y: 0, color: FrogColor.red),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.yellow),
+          Position(x: 0, y: 0, color: BirdColor.red),
         ],
-        lilypadWidget: const Column(
+        nestWidget: const Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                LilyPad(color: FrogColor.green),
-                LilyPad(color: FrogColor.yellow),
-                LilyPad(color: FrogColor.red),
+                Nest(color: BirdColor.green),
+                Nest(color: BirdColor.yellow),
+                Nest(color: BirdColor.red),
               ],
             ),
           ],
@@ -175,7 +175,7 @@ class Levels {
         preBuiltCode: '''column(
   children: [
     row(
-      children: [frog(), frog(), frog()],
+      children: [bird(), bird(), bird()],
     ),
   ]
 )''',
@@ -184,40 +184,19 @@ class Levels {
         number: 8,
         instructions: '', // Will be set dynamically
         initialPositions: [
-          Position(x: 0, y: 0, color: FrogColor.green),
-          Position(x: 0, y: 0, color: FrogColor.yellow),
-          Position(x: 0, y: 0, color: FrogColor.red),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.yellow),
+          Position(x: 0, y: 0, color: BirdColor.red),
         ],
-        lilypadWidget: const Column(
+        nestWidget: const Column(
           children: [
-            LilyPad(color: FrogColor.green),
-            LilyPad(color: FrogColor.yellow),
-            LilyPad(color: FrogColor.red),
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.yellow),
+            Nest(color: BirdColor.red),
           ],
         ),
         preBuiltCode: '''row(
-  children: [frog(), frog(), frog()]
-)''',
-      ),
-      Level(
-        number: 9,
-        instructions: '', // Will be set dynamically
-        initialPositions: [
-          Position(x: 0, y: 0, color: FrogColor.green),
-          Position(x: 0, y: 0, color: FrogColor.yellow),
-          Position(x: 0, y: 0, color: FrogColor.red),
-        ],
-        lilypadWidget: const Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            LilyPad(color: FrogColor.green),
-            LilyPad(color: FrogColor.yellow),
-            LilyPad(color: FrogColor.red),
-          ],
-        ),
-        preBuiltCode: '''flex(
-  direction: horizontal,
-  children: [frog(), frog(), frog()]
+  children: [bird(), bird(), bird()]
 )''',
       ),
     ];
@@ -225,21 +204,19 @@ class Levels {
 
   static List<Level> getLocalizedLevels(AppLocalizations l10n) {
     final levels = getLevels();
-
     return levels.map((level) {
       return Level(
         number: level.number,
-        instructions: _getInstructionsForLevel(level.number, l10n),
-        frogWidget: level.frogWidget,
-        lilypadWidget: level.lilypadWidget,
+        instructions: _getInstructions(level.number, l10n),
         initialPositions: level.initialPositions,
         preBuiltCode: level.preBuiltCode,
+        birdWidget: level.birdWidget,
+        nestWidget: level.nestWidget,
       );
     }).toList();
   }
 
-  static String _getInstructionsForLevel(
-      int levelNumber, AppLocalizations l10n) {
+  static String _getInstructions(int levelNumber, AppLocalizations l10n) {
     switch (levelNumber) {
       case 1:
         return l10n.level1Instructions;
@@ -257,8 +234,6 @@ class Levels {
         return l10n.level7Instructions;
       case 8:
         return l10n.level8Instructions;
-      case 9:
-        return l10n.level9Instructions;
       default:
         return '';
     }

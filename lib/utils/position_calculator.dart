@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tcc2/enums/frog_color.dart';
+import 'package:tcc2/enums/bird_color.dart';
+import 'package:tcc2/models/position.dart';
 import 'package:tcc2/widgets/game_components.dart';
-
-class Position {
-  final double x;
-  final double y;
-  final FrogColor color;
-
-  Position({
-    required this.x,
-    required this.y,
-    required this.color,
-  });
-}
 
 class PositionCalculator {
   static const double _positionTolerance = 15; // Increased tolerance in pixels
@@ -31,12 +20,12 @@ class PositionCalculator {
         final centerX = position.dx + (size.width / 2);
         final centerY = position.dy + (size.height / 2);
 
-        // Get the actual frog color from the widget if possible
-        FrogColor color = FrogColor.green;
-        if (key.currentWidget is Frog) {
-          color = (key.currentWidget as Frog).color;
-        } else if (key.currentWidget is LilyPad) {
-          color = (key.currentWidget as LilyPad).color;
+        // Get the actual bird color from the widget if possible
+        BirdColor color = BirdColor.green;
+        if (key.currentWidget is Bird) {
+          color = (key.currentWidget as Bird).color;
+        } else if (key.currentWidget is Nest) {
+          color = (key.currentWidget as Nest).color;
         } else {}
 
         positions.add(Position(
@@ -50,19 +39,19 @@ class PositionCalculator {
     return positions;
   }
 
-  static bool checkFrogsOnMatchingLilypads(
-    List<Position> frogPositions,
-    List<Position> lilypadPositions,
+  static bool checkBirdsOnMatchingNests(
+    List<Position> birdPositions,
+    List<Position> nestPositions,
   ) {
-    // For each frog, check if it's positioned on a lilypad of the same color
-    for (final frogPosition in frogPositions) {
+    // For each bird, check if it's positioned on a nest of the same color
+    for (final birdPosition in birdPositions) {
       bool foundMatch = false;
 
-      for (final lilypadPosition in lilypadPositions) {
+      for (final nestPosition in nestPositions) {
         // First check if colors match
-        if (frogPosition.color == lilypadPosition.color) {
+        if (birdPosition.color == nestPosition.color) {
           // Then check if positions are close enough
-          if (isPositionMatch(frogPosition, lilypadPosition)) {
+          if (isPositionMatch(birdPosition, nestPosition)) {
             foundMatch = true;
             break;
           }
