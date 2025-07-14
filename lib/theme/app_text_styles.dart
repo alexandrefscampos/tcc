@@ -8,12 +8,14 @@ class AppTextStyles {
     color: AppColors.codeText,
     fontSize: 24,
     fontWeight: FontWeight.bold,
+    fontFamily: 'monospace',
   );
 
   static const TextStyle buttonText = TextStyle(
     color: AppColors.levelButtonText,
     fontSize: 18,
     fontWeight: FontWeight.bold,
+    fontFamily: 'monospace',
   );
 
   // Body text - unified for instructions, feedback, and general text
@@ -22,6 +24,7 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.normal,
     height: 1.4,
+    fontFamily: 'monospace',
   );
 
   // Code text - unified for code input
@@ -38,6 +41,7 @@ class AppTextStyles {
     fontSize: 14,
     fontStyle: FontStyle.italic,
     height: 1.4,
+    fontFamily: 'monospace',
   );
 
   // Error text
@@ -46,5 +50,6 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.normal,
     height: 1.4,
+    fontFamily: 'monospace',
   );
 }

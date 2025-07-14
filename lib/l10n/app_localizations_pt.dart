@@ -9,10 +9,10 @@ class AppLocalizationsPt extends AppLocalizations {
   AppLocalizationsPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get appTitle => 'Flutter Sapo Flex';
+  String get appTitle => 'Flutter pássaro Flex';
 
   @override
-  String get levelSelectTitle => 'Flutter Sapo Flex - Níveis';
+  String get levelSelectTitle => 'Flutter pássaro Flex - Níveis';
 
   @override
   String levelNumber(Object number) {
@@ -58,39 +58,39 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get level1Instructions =>
-      'Bem-vindo ao Flutter Sapo Flex! Seu objetivo é guiar o sapo até a vitória-régia à direita.\n\nUse a propriedade mainAxisAlignment para posicionar itens horizontalmente em Row. Tente mudar mainAxisAlignment de start para end.';
+      'Bem-vindo ao Flutter pássaro Flex! Seu objetivo é guiar o pássaro até o ninho à direita.\n\nUse a propriedade mainAxisAlignment para posicionar itens horizontalmente em Row. Tente mudar mainAxisAlignment de start para end.';
 
   @override
   String get level2Instructions =>
-      'Ajude os sapos a alcançarem suas vitórias-régias no centro.\n\nA propriedade mainAxisAlignment aceita estes valores:\n• start - alinha à esquerda\n• end - alinha à direita\n• center - centraliza os itens\n\nObserve onde as vitórias-régias estão posicionadas e escolha o alinhamento correto!';
+      'Ajude os pássaros a alcançarem seus ninhos no centro.\n\nA propriedade mainAxisAlignment aceita estes valores:\n• start - alinha à esquerda\n• end - alinha à direita\n• center - centraliza os itens\n\nObserve onde os ninhos estão posicionados e escolha o alinhamento correto!';
 
   @override
   String get level3Instructions =>
-      'Ajude todos os três sapos a encontrarem suas vitórias-régias usando apenas mainAxisAlignment. Desta vez, as vitórias-régias têm mais espaço ao redor delas.\n\nLembre-se dos valores possíveis para mainAxisAlignment: start, end, center, spaceBetween, spaceAround, spaceEvenly.\n\nPense sobre como você quer distribuir o espaço ao redor dos seus itens.';
+      'Ajude todos os três pássaros a encontrarem seus ninhos usando apenas mainAxisAlignment. Desta vez, os ninhos têm mais espaço ao redor delas.\n\nLembre-se dos valores possíveis para mainAxisAlignment: start, end, center, spaceBetween, spaceAround, spaceEvenly.\n\nPense sobre como você quer distribuir o espaço ao redor dos seus itens.';
 
   @override
   String get level4Instructions =>
-      'Agora as vitórias-régias estão posicionadas de forma diferente com mais espaço entre elas. Use mainAxisAlignment para combinar as posições dos sapos.\n\nDica: Alguns valores de mainAxisAlignment criam espaçamento igual entre itens. Qual coloca espaço entre itens mas não nas bordas?';
+      'Agora os ninhos estão posicionados de forma diferente com mais espaço entre eles. Use mainAxisAlignment para combinar as posições dos pássaros.\n\nDica: Alguns valores de mainAxisAlignment criam espaçamento igual entre itens. Qual coloca espaço entre itens mas não nas bordas?';
 
   @override
   String get level5Instructions =>
-      'Mova os sapos para a parte inferior do lago.\n\nVocê precisará mudar de Row para Column. Column organiza filhos verticalmente ao invés de horizontalmente.\n\nPense sobre qual valor de mainAxisAlignment move itens para o final do seu container.';
+      'Mova os pássaros para a parte inferior do lago.\n\nVocê precisará mudar de Row para Column. Column organiza filhos verticalmente ao invés de horizontalmente.\n\nPense sobre qual valor de mainAxisAlignment move itens para o final do seu container.';
 
   @override
   String get level6Instructions =>
-      'Centralize o sapo tanto horizontal quanto verticalmente.\n\nPara controlar posicionamento horizontal e vertical, você precisará combinar widgets. Considere como Row controla posicionamento horizontal e Column controla posicionamento vertical.\n\nVocê consegue aninhar um dentro do outro?';
+      'Centralize o pássaro tanto horizontal quanto verticalmente.\n\nPara controlar posicionamento horizontal e vertical, você precisará combinar widgets. Considere como Row controla posicionamento horizontal e Column controla posicionamento vertical.\n\nVocê consegue aninhar um dentro do outro?';
 
   @override
   String get level7Instructions =>
-      'Posicione os sapos na parte inferior com espaçamento igual entre eles.\n\nEste desafio combina conceitos dos níveis anteriores. Você precisará de controle vertical e horizontal.\n\nPense sobre quais widgets e valores de alinhamento você aprendeu até agora.';
+      'Posicione os pássaros na parte inferior com espaçamento igual entre eles.\n\nEste desafio combina conceitos dos níveis anteriores. Você precisará de controle vertical e horizontal.\n\nPense sobre quais widgets e valores de alinhamento você aprendeu até agora.';
 
   @override
   String get level8Instructions =>
-      'Empilhe os sapos verticalmente para combinar com as vitórias-régias.\n\nColumn organiza filhos de cima para baixo, que é o equivalente vertical de Row.\n\nObserve cuidadosamente onde cada vitória-régia está posicionada.';
+      'Empilhe os pássaros verticalmente para combinar com os ninhos.\n\nColumn organiza filhos de cima para baixo, que é o equivalente vertical de Row.\n\nObserve cuidadosamente onde cada ninho está posicionado.';
 
   @override
   String get level9Instructions =>
-      'Use Flex para posicionar os sapos corretamente.\n\nFlex é o widget base tanto para Row quanto para Column. Ele tem uma propriedade direction que determina se funciona horizontalmente ou verticalmente.\n\nExperimente com valores de direction e mainAxisAlignment para resolver este quebra-cabeça.';
+      'Use Flex para posicionar os pássaros corretamente.\n\nFlex é o widget base tanto para Row quanto para Column. Ele tem uma propriedade direction que determina se funciona horizontalmente ou verticalmente.\n\nExperimente com valores de direction e mainAxisAlignment para resolver este quebra-cabeça.';
 
   @override
   String get syntaxErrorInvalidWidget =>
@@ -149,12 +149,12 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String solutionIncorrectFrogCount(Object expected, Object found) {
-    return 'Número incorreto de sapos. Esperado $expected sapos, mas encontrou $found.';
+    return 'Número incorreto de pássaros. Esperado $expected pássaros, mas encontrou $found.';
   }
 
   @override
   String solutionMismatchedCount(Object frogCount, Object lilypadCount) {
-    return 'Número de sapos ($frogCount) não corresponde ao número de vitórias-régias ($lilypadCount).';
+    return 'Número de pássaros ($frogCount) não corresponde ao número de ninhos ($lilypadCount).';
   }
 
   @override
@@ -163,7 +163,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get solutionIncorrectPlacement =>
-      'Não está certo ainda. Certifique-se de que cada sapo está na vitória-régia da cor correspondente.';
+      'Não está certo ainda. Certifique-se de que cada pássaro está no ninho da cor correspondente.';
 
   @override
   String solutionCodeError(Object error) {

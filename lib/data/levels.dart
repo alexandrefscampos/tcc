@@ -199,6 +199,83 @@ class Levels {
   children: [bird(), bird(), bird()]
 )''',
       ),
+      Level(
+        number: 9,
+        instructions: '', // Will be set dynamically
+        initialPositions: [
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.yellow),
+          Position(x: 0, y: 0, color: BirdColor.red),
+        ],
+        nestWidget: const Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.yellow),
+            Nest(color: BirdColor.red),
+          ],
+        ),
+        preBuiltCode: '''row(
+  children: [bird(), bird(), bird()]
+)''',
+      ),
+      Level(
+        number: 10,
+        instructions: '', // Will be set dynamically
+        initialPositions: [
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.yellow),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.green),
+        ],
+        nestWidget: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.green),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Nest(color: BirdColor.yellow),
+              ],
+            ),
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.green),
+          ],
+        ),
+        preBuiltCode: '''row(
+  children: [bird(), bird(), bird(), bird(), bird()]
+)''',
+      ),
+      Level(
+        number: 11,
+        instructions: '', // Will be set dynamically
+        initialPositions: [
+          Position(x: 0, y: 0, color: BirdColor.yellow),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.green),
+          Position(x: 0, y: 0, color: BirdColor.red),
+        ],
+        nestWidget: const Wrap(
+          children: [
+            Nest(color: BirdColor.yellow),
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.green),
+            Nest(color: BirdColor.red),
+          ],
+        ),
+        preBuiltCode: '''row(
+  children: [bird(), bird(), bird(), bird(), bird(), bird(), bird()]
+)''',
+      ),
     ];
   }
 
